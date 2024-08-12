@@ -46,7 +46,7 @@ def register():
     # Check if the user already exists
     sql = text('SELECT * FROM login WHERE UserName=:username OR EmailID=:emailID')
     with db.engine.connect() as connection:
-        result = connection.execute(sql, {'username': username, 'emailID': emailID, 'password': password}).fetchone()
+        result = connection.execute(sql, {'username': username, 'emailID': emailID}).fetchone()
 
     if result:
         return jsonify({'message': 'User already exists!'}), 400
