@@ -1,13 +1,15 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Header from "./components/Header";
 import Home from "./Pages/Home";
 import Auth from "./components/Auth/Auth";
+import { AuthProvider } from "./contexts/authContext"; // Import AuthProvider
 
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">
@@ -20,7 +22,7 @@ function App() {
           </Routes>
         </main>
       </div>
-    </div>
+    </AuthProvider>
   );
 }
 
