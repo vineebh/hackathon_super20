@@ -54,14 +54,14 @@ const Auth = () => {
   return (
     <div>
       {userLoggedIn && <Navigate to="/home" replace={true} />}
-      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h1 className="text-3xl font-bold text-blue-800 mb-6 text-center">
+      <div className="bg-gray-900 min-h-screen flex items-center justify-center">
+        <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+          <h1 className="text-3xl font-bold text-red-500 mb-6 text-center">
             {isLogin ? "Login" : "Signup"}
           </h1>
           {userLoggedIn ? (
             <div className="text-center">
-              <p className="mb-4">You are logged in!</p>
+              <p className="mb-4 text-white">You are logged in!</p>
               <button
                 onClick={handleSignOut}
                 className="bg-red-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-red-700 transition duration-300"
@@ -75,7 +75,7 @@ const Auth = () => {
                 <div className="mb-4">
                   <label
                     htmlFor="name"
-                    className="block text-gray-800 font-semibold mb-2"
+                    className="block text-white font-semibold mb-2"
                   >
                     Full Name
                   </label>
@@ -86,7 +86,7 @@ const Auth = () => {
                     placeholder="Full Name"
                     value={authData.name}
                     onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 rounded-md"
+                    className="w-full p-2 border border-gray-600 rounded-md bg-gray-700 text-white"
                   />
                 </div>
               )}
@@ -94,7 +94,7 @@ const Auth = () => {
               <div className="mb-4">
                 <label
                   htmlFor="email"
-                  className="block text-gray-800 font-semibold mb-2"
+                  className="block text-white font-semibold mb-2"
                 >
                   Email
                 </label>
@@ -105,13 +105,13 @@ const Auth = () => {
                   placeholder="Your Email"
                   value={authData.email}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full p-2 border border-gray-600 rounded-md bg-gray-700 text-white"
                 />
               </div>
               <div className="mb-4">
                 <label
                   htmlFor="password"
-                  className="block text-gray-800 font-semibold mb-2"
+                  className="block text-white font-semibold mb-2"
                 >
                   Password
                 </label>
@@ -122,13 +122,13 @@ const Auth = () => {
                   placeholder="Your Password"
                   value={authData.password}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full p-2 border border-gray-600 rounded-md bg-gray-700 text-white"
                 />
               </div>
 
               <button
                 type="submit"
-                className="bg-blue-800 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-900 transition duration-300 w-full"
+                className="bg-red-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-red-700 transition duration-300 w-full"
               >
                 {isLogin ? "Login" : "Signup"}
               </button>
