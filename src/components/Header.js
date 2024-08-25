@@ -22,9 +22,9 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-lg">
+    <header className="bg-black shadow-lg">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="text-3xl font-bold text-blue-700">EduTech</div>
+        <div className="text-3xl font-bold text-white">EduTech</div>
 
         <nav className="hidden md:flex space-x-8 text-2xl">
           <Link to="/" className="text-blue-700 hover:text-blue-900 transition duration-300 text-lg font-medium">
@@ -54,6 +54,7 @@ const Header = () => {
               Login
             </Link>
           )}
+
         </div>
       </div>
     </header>
