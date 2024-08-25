@@ -5,7 +5,7 @@ import Contact from "./Pages/Contact";
 import Header from "./components/Header";
 import Home from "./Pages/Home";
 import Auth from "./components/Auth/Auth";
-import { AuthProvider } from "./contexts/authContext"; // Import AuthProvider
+import { AuthProvider } from "./contexts/authContext"; 
 
 function App() {
   return (

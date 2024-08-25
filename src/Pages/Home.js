@@ -30,26 +30,26 @@ const Home = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-gray-900 min-h-screen text-white"> {/* Changed background to dark gray */}
       {/* Hero Section */}
-      <div className="relative w-full bg-blue-600 text-white py-16">
+      <div className="relative w-full bg-gray-800 py-16"> {/* Changed background to darker gray */}
         <img
           src="https://img.freepik.com/free-photo/scene-with-business-person-working-futuristic-office-job_23-2151003708.jpg?t=st=1723794847~exp=1723798447~hmac=ff6fb5eb3ccf3edb81bc7ff9adcf65c4ca4a8a6f955b6cedc3328a140565e048&w=996"
           alt="Education"
           className="absolute inset-0 object-cover w-full h-full opacity-50"
         />
-        <div className="relative z-10 text-center px-6 sm:px-12 py-16 bg-white bg-opacity-80 rounded-lg shadow-lg mx-auto max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-blue-600">
+        <div className="relative z-10 text-center px-6 sm:px-12 py-16 bg-gray-900 bg-opacity-80 rounded-lg shadow-lg mx-auto max-w-4xl"> {/* Changed background to darker gray */}
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-blue-500"> {/* Changed heading color to blue */}
             Welcome to EduTech
           </h1>
-          <p className="text-lg md:text-xl mb-8 text-gray-800">
+          <p className="text-lg md:text-xl mb-8 text-gray-300"> {/* Changed text color to light gray */}
             The beautiful thing about learning is that no one can take it away from you.
           </p>
-          <p className="text-base md:text-lg mb-8 text-gray-600">
+          <p className="text-base md:text-lg mb-8 text-gray-400"> {/* Changed text color to slightly darker gray */}
             At EduTech, we provide a wide range of courses designed to help you succeed in your educational journey. Whether you’re looking to learn new skills, improve your knowledge, or advance your career, we’ve got something for everyone.
           </p>
           <Link to="/courses">
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition duration-300">
+            <button className="bg-blue-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300">
               Explore Courses
             </button>
           </Link>
@@ -58,7 +58,7 @@ const Home = () => {
 
       {/* Courses Section */}
       <div className="py-16 px-4 sm:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-12 text-center">Our Courses</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-blue-500 mb-12 text-center">Our Courses</h2> {/* Changed heading color to blue */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-xl mx-auto">
           {/* Map over the courses array to render CourseCard components */}
           {courses.map(course => (
