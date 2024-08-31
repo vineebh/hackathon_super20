@@ -70,6 +70,7 @@ const Auth = () => {
 
   return (
     <div>
+
       <div className="bg-gray-100 min-h-screen flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h1 className="text-3xl font-bold text-blue-800 mb-6 text-center">
@@ -80,6 +81,7 @@ const Auth = () => {
               <div className="mb-4">
                 <label htmlFor="name" className="block text-gray-800 font-semibold mb-2">
                   Full Name
+
                 </label>
                 <input
                   type="text"
@@ -88,9 +90,10 @@ const Auth = () => {
                   placeholder="Full Name"
                   value={authData.name}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full p-2 border border-gray-600 rounded-md bg-gray-700 text-white"
                 />
               </div>
+
             )}
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-800 font-semibold mb-2">
@@ -141,6 +144,7 @@ const Auth = () => {
               {isLogin ? "Don't Have an Account? Signup" : "Already Have an Account? Login"}
             </button>
           </form>
+
         </div>
       </div>
     </div>
