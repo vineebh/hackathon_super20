@@ -63,6 +63,7 @@ const Auth = () => {
       localStorage.setItem("idToken", token);
       dispatch(setIdToken(token));
       dispatch(setLoginStatus());
+      navigate('/home')
     } catch (error) {
       console.error("Google Sign-In Error:", error.message);
     }
