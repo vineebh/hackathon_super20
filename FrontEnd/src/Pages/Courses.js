@@ -45,6 +45,7 @@ const Courses = () => {
           >
             <Course courseData={data} />
           </div>
+
         ))}
       </div>
     </div>
