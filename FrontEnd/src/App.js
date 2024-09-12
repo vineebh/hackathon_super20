@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import Auth from "./components/Auth/Auth";
 import { AuthProvider } from "./contexts/authContext"; 
 import Test from "./Pages/Test";
+import Courses from "./Pages/Courses";
 
 function App() {
   return (
@@ -18,9 +19,11 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/courses"  element={<Courses/>}/>
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/test" element={<Test/>}/>
+            <Route path="/courses" element={<Courses/>}/>
           </Routes>
         </main>
       </div>
