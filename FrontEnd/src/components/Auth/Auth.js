@@ -155,7 +155,9 @@ const Auth = () => {
               onChange={handleChange}
               className="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-white"
             />
+
             {errors.password && <p className="text-red-500">{errors.password}</p>}
+
           </div>
           <button
             type="submit"
