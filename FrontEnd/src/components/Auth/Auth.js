@@ -18,38 +18,49 @@ const Auth = () => {
   email: "",
   password: "",
   });
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAuthData({ ...authData, [name]: value });
+  const { name, value } = e.target;
+  setAuthData({ ...authData, [name]: value });
+  
+  if (name === "name" && !isLogin && value.length < 3) {
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    name: "Name must be at least 3 characters long",
+    }));
+  } else {
+    setErrors((prevErrors) => ({ ...prevErrors, name: "" }));
+  }
 
-    if (name === "name" && !isLogin && value.length < 3) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        name: "Name must be at least 3 characters long",
-      }));
-    } else {
-      setErrors((prevErrors) => ({ ...prevErrors, name: "" }));
-    }
+  if (name === "password" && value.length < 8) {
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    password: "Password must be at least 8 characters long",
+    }));
+  } else {
+    setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+  }
 
-    if (name === "password" && value.length < 8) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "Password must be at least 8 characters long",
-      }));
-    } else {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
-    }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password, name } = authData;
+  e.preventDefault();
+  const { email, password, name } = authData;
+  if (!isLogin && name.length < 3) {
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    name: "Name must be at least 3 characters long",
+    }));
+    return;
+  }
+
+  if (password.length < 8) {
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    password: "Password must be at least 8 characters long",
+    }));
+    return;
+  }
 
     if (!isLogin && name.length < 3) {
       setErrors((prevErrors) => ({
@@ -176,6 +187,7 @@ const Auth = () => {
     } catch (error) {
       console.error("Google Sign-In Error:", error.message);
     }
+
   };
 
   return (
