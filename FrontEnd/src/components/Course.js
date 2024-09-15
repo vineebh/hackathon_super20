@@ -5,6 +5,7 @@ const Course = ({ courseData }) => {
   const { courseName, description, image, professorName, duration } = courseData;
 
   return (
+
     <div className="p-4 sm:p-6 lg:p-8 rounded-3xl shadow-2xl h-full bg-white bg-opacity-20 backdrop-blur-md border border-gray-700 mt-8 sm:mt-10 lg:mt-12">
       {/* Course Name */}
       <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gradient text-white text-transparent bg-clip-text text-center mb-4 sm:mb-6 lg:mb-8 drop-shadow-xl">
@@ -31,6 +32,7 @@ const Course = ({ courseData }) => {
         <div className="w-full sm:w-2/3 mt-4 sm:mt-0">
           <p className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-4 sm:mb-6 lg:mb-8 pr-0 sm:pr-4 lg:pr-6">
             <span className="font-bold text-sm sm:text-base md:text-lg lg:text-xl">Description:</span> {description}
+
           </p>
         </div>
       </div>

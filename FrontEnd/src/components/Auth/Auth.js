@@ -9,9 +9,14 @@ const Auth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [authData, setAuthData] = useState({
-    name: "",
-    email: "",
-    password: "",
+  name: "",
+  email: "",
+  password: "",
+  });
+  const [errors, setErrors] = useState({
+  name: "",
+  email: "",
+  password: "",
   });
   const [errors, setErrors] = useState({
     name: "",
@@ -85,10 +90,17 @@ const Auth = () => {
         firebase: error.message,
       }));
     }
+  } catch (error) {
+    console.error("Authentication error:", error.message);
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    firebase: error.message,
+    }));
+  }
   };
 
   const toggleAuthMode = () => {
-    dispatch(setIsLogin(!isLogin));
+  dispatch(setIsLogin(!isLogin));
   };
 
   const loginWithGoogleHandler = async () => {
@@ -156,7 +168,9 @@ const Auth = () => {
               onChange={handleChange}
               className="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-white"
             />
+
             {errors.password && <p className="text-red-500">{errors.password}</p>}
+
           </div>
           <button
             type="submit"
