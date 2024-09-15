@@ -40,6 +40,90 @@ const Auth = () => {
   } else {
     setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
   }
+
+  };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { email, password, name } = authData;
+  if (!isLogin && name.length < 3) {
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    name: "Name must be at least 3 characters long",
+    }));
+    return;
+  }
+
+  if (password.length < 8) {
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    password: "Password must be at least 8 characters long",
+    }));
+    return;
+  }
+
+    if (!isLogin && name.length < 3) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        name: "Name must be at least 3 characters long",
+      }));
+      return;
+    }
+
+    if (password.length < 8) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password must be at least 8 characters long",
+      }));
+      return;
+    }
+
+    try {
+      if (isLogin) {
+        const response = await signInUserEmailAndPass(email, password);
+        const token = response.user.accessToken;
+        localStorage.setItem("idToken", token);
+        dispatch(setIdToken(token));
+        dispatch(setLoginStatus(true));
+        navigate('/home');
+      } else {
+        const response = await createUserEmailAndPass(email, password);
+        const token = response.user.accessToken;
+        localStorage.setItem("idToken", token);
+        dispatch(setIdToken(token));
+        dispatch(setIsLogin(true));
+        navigate('/home');
+      }
+    } catch (error) {
+      console.error("Authentication error:", error.message);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firebase: error.message,
+      }));
+/*
+  });
+
+  const handleChange = (e) => {
+  const { name, value } = e.target;
+  setAuthData({ ...authData, [name]: value });
+  
+  if (name === "name" && !isLogin && value.length < 3) {
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    name: "Name must be at least 3 characters long",
+    }));
+  } else {
+    setErrors((prevErrors) => ({ ...prevErrors, name: "" }));
+  }
+
+  if (name === "password" && value.length < 8) {
+    setErrors((prevErrors) => ({
+    ...prevErrors,
+    password: "Password must be at least 8 characters long",
+    }));
+  } else {
+    setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+  }
   };
 
   const handleSubmit = async (e) => {
@@ -76,6 +160,7 @@ const Auth = () => {
     dispatch(setIdToken(token));
     dispatch(setIsLogin(true));
     navigate('/home');
+*/
     }
   } catch (error) {
     console.error("Authentication error:", error.message);
@@ -91,17 +176,18 @@ const Auth = () => {
   };
 
   const loginWithGoogleHandler = async () => {
-  try {
-    const result = await signInWithGoogle();
-    const token = result.token;
-    localStorage.setItem("idToken", token);
-    dispatch(setIdToken(token));
-    dispatch(setLoginStatus(true));
-    dispatch(setIsLogin(true));
-    navigate('/home');
-  } catch (error) {
-    console.error("Google Sign-In Error:", error.message);
-  }
+    try {
+      const result = await signInWithGoogle();
+      const token = result.token;
+      localStorage.setItem("idToken", token);
+      dispatch(setIdToken(token));
+      dispatch(setLoginStatus(true));
+      dispatch(setIsLogin(true));
+      navigate('/home');
+    } catch (error) {
+      console.error("Google Sign-In Error:", error.message);
+    }
+
   };
 
   return (
