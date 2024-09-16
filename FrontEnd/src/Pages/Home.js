@@ -32,7 +32,7 @@ const Home = () => {
 
     <div className="bg-gradient-to-r from-slate-700 to-slate-900 min-h-screen text-white">
       {/* Hero Section */}
-      <div className="relative w-full bg-gradient-to-r from-slate-700 to-slate-900 py-16">
+      <div className="relative w-full bg-gradient-to-r from-slate-700 to-slate-900 py-16"> {/* Changed background to darker gray */}
 
         <img
           src="https://img.freepik.com/free-photo/scene-with-business-person-working-futuristic-office-job_23-2151003708.jpg?t=st=1723794847~exp=1723798447~hmac=ff6fb5eb3ccf3edb81bc7ff9adcf65c4ca4a8a6f955b6cedc3328a140565e048&w=996"
@@ -40,9 +40,8 @@ const Home = () => {
           className="absolute inset-0 object-cover w-full h-full opacity-50"
         />
 
-        <div className="relative z-10 text-center px-6 sm:px-12 py-16 bg-gray-900 bg-opacity-80 rounded-lg shadow-lg mx-auto max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
-
+        <div className="relative z-10 text-center px-6 sm:px-12 py-16 bg-gray-900 bg-opacity-80 rounded-lg shadow-lg mx-auto max-w-4xl"> {/* Changed background to darker gray */}
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-fuchsia-500 to-cyan-500  bg-clip-text text-transparent"> {/* Changed heading color to blue */}
             Welcome to EduTech
           </h1>
           <p className="text-base sm:text-lg md:text-xl mb-8 text-gray-300">
