@@ -89,7 +89,7 @@ const Auth = () => {
         ...prevErrors,
         firebase: error.message,
       }));
-/*
+
   });
 
   const handleChange = (e) => {
@@ -113,11 +113,13 @@ const Auth = () => {
   } else {
     setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
   }
+
   };
 
   const handleSubmit = async (e) => {
   e.preventDefault();
   const { email, password, name } = authData;
+
   if (!isLogin && name.length < 3) {
     setErrors((prevErrors) => ({
     ...prevErrors,
@@ -134,29 +136,30 @@ const Auth = () => {
     return;
   }
 
-  try {
-    if (isLogin) {
-    const response = await signInUserEmailAndPass(email, password);
-    const token = response.user.accessToken;
-    localStorage.setItem("idToken", token);
-    dispatch(setIdToken(token));
-    dispatch(setLoginStatus(true));
-    navigate('/home');
-    } else {
-    const response = await createUserEmailAndPass(email, password);
-    const token = response.user.accessToken;
-    localStorage.setItem("idToken", token);
-    dispatch(setIdToken(token));
-    dispatch(setIsLogin(true));
-    navigate('/home');
-*/
-    }
-  } catch (error) {
-    console.error("Authentication error:", error.message);
-    setErrors((prevErrors) => ({
-    ...prevErrors,
-    firebase: error.message,
-    }));
+
+    try {
+      if (isLogin) {
+        const response = await signInUserEmailAndPass(email, password);
+        const token = response.user.accessToken;
+        localStorage.setItem("idToken", token);
+        dispatch(setIdToken(token));
+        dispatch(setLoginStatus(true));
+        navigate('/home');
+      } else {
+        const response = await createUserEmailAndPass(email, password);
+        const token = response.user.accessToken;
+        localStorage.setItem("idToken", token);
+        dispatch(setIdToken(token));
+        dispatch(setIsLogin(true));
+        navigate('/home');
+      }
+    } catch (error) {
+      console.error("Authentication error:", error.message);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firebase: error.message,
+      }));
+
   }
   };
 
@@ -176,6 +179,7 @@ const Auth = () => {
     } catch (error) {
       console.error("Google Sign-In Error:", error.message);
     }
+
   };
 
   return (
