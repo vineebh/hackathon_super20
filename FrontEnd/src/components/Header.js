@@ -68,7 +68,6 @@ const Header = () => {
             About
           </Link>
           <Link to="/contact" className="block py-2 px-4 md:py-0 md:px-0 hover:text-gray-300 transition duration-300 text-lg font-medium">
-
             Contact
           </Link>
         </nav>

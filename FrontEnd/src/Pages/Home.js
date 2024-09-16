@@ -29,7 +29,8 @@ const Home = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-slate-700 to-slate-900 min-h-screen text-white"> {/* Changed background to dark gray */}
+
+    <div className="bg-gradient-to-r from-slate-700 to-slate-900 min-h-screen text-white">
       {/* Hero Section */}
       <div className="relative w-full bg-gradient-to-r from-slate-700 to-slate-900 py-16"> {/* Changed background to darker gray */}
 
@@ -51,7 +52,7 @@ const Home = () => {
           </p>
           <Link to="/courses">
 
-            <button className="bg-gradient-to-r from-fuchsia-500 to-cyan-500  text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300">
+            <button className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300">
 
               Explore Courses
             </button>
