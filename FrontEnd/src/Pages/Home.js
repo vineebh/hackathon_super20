@@ -29,7 +29,8 @@ const Home = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-slate-700 to-slate-900 min-h-screen text-white"> {/* Changed background to dark gray */}
+
+    <div className="bg-gradient-to-r from-slate-700 to-slate-900 min-h-screen text-white">
       {/* Hero Section */}
       <div className="relative w-full bg-gradient-to-r from-slate-700 to-slate-900 py-16"> {/* Changed background to darker gray */}
 
