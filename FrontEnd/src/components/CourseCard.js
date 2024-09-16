@@ -5,7 +5,6 @@ const CourseCard = ({ title, description, imageUrl, link }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto my-4">
       {/* Image Section */}
-
       <img
         src={imageUrl}
         alt={title}
