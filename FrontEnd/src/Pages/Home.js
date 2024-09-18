@@ -43,6 +43,7 @@ const Home = () => {
         <div className="relative z-10 text-center px-6 sm:px-12 py-16 bg-gray-900 bg-opacity-80 rounded-lg shadow-lg mx-auto max-w-4xl"> {/* Changed background to darker gray */}
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-fuchsia-500 to-cyan-500  bg-clip-text text-transparent"> {/* Changed heading color to blue */}
 
+
             Welcome to EduTech
           </h1>
           <p className="text-base sm:text-lg md:text-xl mb-8 text-gray-300">
@@ -54,6 +55,7 @@ const Home = () => {
           <Link to="/courses">
 
             <button className="bg-gradient-to-r from-fuchsia-500 to-cyan-500  text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-600 transition duration-300">
+
 
               Explore Courses
             </button>
