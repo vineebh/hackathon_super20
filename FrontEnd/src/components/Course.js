@@ -32,6 +32,7 @@ const Course = ({ courseData }) => {
         <div className="w-full sm:w-2/3 mt-4 sm:mt-0">
           <p className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-4 sm:mb-6 lg:mb-8 pr-0 sm:pr-4 lg:pr-6">
             <span className="font-bold text-sm sm:text-base md:text-lg lg:text-xl">Description:</span> {description}
+
           </p>
         </div>
       </div>

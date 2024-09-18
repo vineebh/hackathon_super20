@@ -50,6 +50,24 @@ const Header = () => {
               ></path>
             </svg>
           </button>
+          {/* Authentication Buttons for Mobile */}
+      <div className={`md:hidden w-full flex justify-center px-4 ${menuOpen ? "block" : "show"}`}>
+        {loginStatus ? (
+          <button
+            onClick={logoutHandler}
+            className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-800 transition duration-300"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            to="/auth"
+            className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-800 transition duration-300"
+          >
+            Login
+          </Link>
+        )}
+      </div>
         </div>
 
         {/* Navigation Links for Desktop */}
@@ -93,24 +111,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Authentication Buttons for Mobile */}
-      <div className={`md:hidden w-full flex justify-end px-6 py-2 ${menuOpen ? "block" : "hidden"}`}>
-        {loginStatus ? (
-          <button
-            onClick={logoutHandler}
-            className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-800 transition duration-300"
-          >
-            Logout
-          </button>
-        ) : (
-          <Link
-            to="/auth"
-            className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-800 transition duration-300"
-          >
-            Login
-          </Link>
-        )}
-      </div>
+      
     </header>
   );
 };
