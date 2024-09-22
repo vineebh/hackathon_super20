@@ -64,6 +64,7 @@ const Auth = () => {
     try {
       if (isLogin) {
         const response = await signInUserEmailAndPass(email, password);
+        console.log(response)
         const token = response.user.accessToken;
         localStorage.setItem("idToken", token);
         dispatch(setIdToken(token));
