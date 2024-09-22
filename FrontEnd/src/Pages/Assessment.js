@@ -44,7 +44,7 @@ const Assessment = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen flex justify-center items-center py-12">
+    <div className="bg-gradient-to-b from-gray-900 to-gray-800  h-full flex justify-center items-center py-12 mt-10">
       <div className="container mx-auto px-4 sm:px-6 max-w-4xl"> {/* Increased max-width */}
         {/* Assessment Card */}
         <div className="bg-gray-800 p-10 rounded-lg shadow-2xl flex flex-col items-center">
