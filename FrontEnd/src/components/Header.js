@@ -33,11 +33,9 @@ const Header = () => {
     setSidebarOpen(false);
   };
 
-
-
   return (
     <header className="bg-gradient-to-r from-neutral-900 to-zinc-600 shadow-lg fixed w-full top-0 left-0 z-50">
-      <div className="container mx-auto px-4 py-4 flex justify-evenly items-center">
+      <div className="container mx-auto px-4 py-2 flex justify-between  lg:flex lg:justify-evenly lg:items-center ">
         <div className="text-2xl md:text-3xl font-bold text-white">EduTech</div>
 
         <div className="md:hidden flex items-center">
@@ -94,14 +92,14 @@ const Header = () => {
         {loginStatus ? (
           <button
             onClick={logoutHandler}
-            className="py-1 px-3 text-sm rounded bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-lg transition-shadow duration-300 hover:scale-105"
+            className=" hidden lg:flex md:flex py-1 px-3 text-sm rounded bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-lg transition-shadow duration-300 hover:scale-105"
           >
             Logout
           </button>
         ) : (
           <Link
             to="/auth"
-            className="py-1 px-4 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
+            className=" hidden lg:flex md:flex py-1 px-4 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
           >
             Login
           </Link>
@@ -109,9 +107,7 @@ const Header = () => {
       </div>
 
       {/* Sidebar for mobile view */}
-      {/* {sidebarOpen && (
-        <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={toggleSidebar}></div>
-      )} */}
+
       <div
         className={`fixed text-center top-0 right-0 h-full w-64 bg-neutral-900 p-4 transform transition-transform duration-300 ${
           sidebarOpen ? "translate-x-0" : "translate-x-full"
@@ -124,23 +120,47 @@ const Header = () => {
           <IoMdClose />
         </button>
         <div className="flex flex-col mt-4">
-          <Link to="/" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Home</Link>
-          {loginStatus && (
-            <Link to="/courses" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Courses</Link>
-          )}
-          <Link to="/about" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">About</Link>
-          <Link to="/contact" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Contact</Link>
+          <Link
+            to="/"
+            onClick={handleLinkClick}
+            className="py-2 text-white hover:text-gray-300 transition duration-300"
+          >
+            Home
+          </Link>
+
+          <Link
+            to="/courses"
+            onClick={handleLinkClick}
+            className="py-2 text-white hover:text-gray-300 transition duration-300"
+          >
+            Courses
+          </Link>
+
+          <Link
+            to="/about"
+            onClick={handleLinkClick}
+            className="py-2 text-white hover:text-gray-300 transition duration-300"
+          >
+            About
+          </Link>
+          <Link
+            to="/contact"
+            onClick={handleLinkClick}
+            className="py-2 text-white hover:text-gray-300 transition duration-300"
+          >
+            Contact
+          </Link>
           {loginStatus ? (
             <button
               onClick={logoutHandler}
-              className="py-2 text-white hover:text-gray-300 transition duration-300"
+               className="py-1 px-4 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
             >
               Logout
             </button>
           ) : (
             <Link
               to="/auth"
-              className="py-2 text-white hover:text-gray-300 transition duration-300"
+               className="py-1 px-2 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
             >
               Login
             </Link>

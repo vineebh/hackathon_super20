@@ -1,13 +1,20 @@
 import React from 'react';
 import '.././index.css'; 
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const Course = ({ courseData }) => {
   const { courseName, description, image, professorName, duration } = courseData;
+  const loginStatus = useSelector((state)=> state.auth.loginStatus)
   const navigate = useNavigate();
 
-  const asses =()=>{
-    navigate("/Assessment")
+  const enrollHandler =()=>{
+    if(loginStatus === true){
+      navigate("/Assessment")
+    }else{
+      navigate('/auth');
+    }
   }
 
   return (
@@ -36,7 +43,7 @@ const Course = ({ courseData }) => {
 
         {/* Description Section */}
         <div className="w-full sm:w-2/3 mt-4 sm:mt-0">
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-4 sm:mb-6 lg:mb-8 pr-0 sm:pr-4 lg:pr-6">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-4 sm:mb-6 lg:mb-8 pr-0 sm:pr-4 lg:pr-6 text-white">
             <span className="font-bold text-sm sm:text-base md:text-lg lg:text-xl">Description:</span> {description}
 
           </p>
@@ -47,7 +54,7 @@ const Course = ({ courseData }) => {
       <div className="flex justify-center sm:justify-end mt-4 sm:mt-6 lg:mt-8">
         <button
           className="py-2 px-4 sm:py-2.5 sm:px-6 md:py-3 md:px-8 lg:py-3 lg:px-8 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
-        onClick={asses}>
+        onClick={enrollHandler}>
           Enroll
         </button>
       </div>
