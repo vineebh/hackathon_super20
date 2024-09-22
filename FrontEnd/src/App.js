@@ -10,9 +10,10 @@ import Home from "./Pages/Home";
 import Test from "./Pages/Test";
 import Exam from "./Pages/MCQ";
 import { useSelector } from "react-redux";
+import DashBoard from "./Pages/DashBoard";
 
 function App() {
-  const loginStatus = useSelector((state) => state.auth.loginStatus); // Corrected to islogin
+  const loginStatus = useSelector((state) => state.auth.loginStatus); 
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -27,6 +28,7 @@ function App() {
           <Route path="/courses" element={<Courses />} />
 
           <Route path="/assessment" element={<Assessment />}/>
+          <Route path="/dashboard" element={<DashBoard/>}/>
           
 
           {/* Redirect to home if logged in, otherwise show Auth */}
