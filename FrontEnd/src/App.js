@@ -22,27 +22,24 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          
+          <Route path="/courses" element={<Courses />} />
+
           {/* Redirect to home if logged in, otherwise show Auth */}
-          <Route 
-            path="/auth" 
-            element={loginStatus ? <Navigate to="/home" /> : <Auth />} 
+          <Route
+            path="/auth"
+            element={loginStatus ? <Navigate to="/home" /> : <Auth />}
           />
 
-          {/* Conditionally render the Courses route based on login status */}
-          <Route 
-            path="/courses" 
-            element={loginStatus ? <Courses /> : <Navigate to="/auth" />} 
-          />
+          
 
           {/* Protecting other pages */}
-          <Route 
-            path="/test" 
-            element={loginStatus ? <Test /> : <Navigate to="/auth" />} 
+          <Route
+            path="/test"
+            element={loginStatus ? <Test /> : <Navigate to="/auth" />}
           />
-          <Route 
-            path="/mcq" 
-            element={loginStatus ? <Exam /> : <Navigate to="/auth" />} 
+          <Route
+            path="/mcq"
+            element={loginStatus ? <Exam /> : <Navigate to="/auth" />}
           />
         </Routes>
       </main>

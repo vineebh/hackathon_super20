@@ -19,6 +19,7 @@ const Header = () => {
       dispatch(setLoginStatus(false));
       dispatch(setIsLogin(false));
       navigate("/auth");
+      console.log("clicked");
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -28,17 +29,16 @@ const Header = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  const handleLinkClick = () => {
-    setSidebarOpen(false);
-  };
-
   return (
     <header className="bg-gradient-to-r from-neutral-900 to-zinc-600 shadow-lg fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-evenly items-center">
         <div className="text-2xl md:text-3xl font-bold text-white">EduTech</div>
 
         <div className="md:hidden flex items-center">
-          <button className="text-white focus:outline-none" onClick={toggleSidebar}>
+          <button
+            className="text-white focus:outline-none"
+            onClick={toggleSidebar}
+          >
             <svg
               className="w-8 h-8"
               fill="none"
@@ -46,18 +46,43 @@ const Header = () => {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
         </div>
 
         <nav className="hidden md:flex md:items-center space-x-8 text-lg md:text-2xl text-white mx-auto">
-          <Link to="/" className="block py-2 hover:text-gray-300 transition duration-300">Home</Link>
-          {loginStatus && (
-            <Link to="/courses" className="block py-2 hover:text-gray-300 transition duration-300">Courses</Link>
-          )}
-          <Link to="/about" className="block py-2 hover:text-gray-300 transition duration-300">About</Link>
-          <Link to="/contact" className="block py-2 hover:text-gray-300 transition duration-300">Contact</Link>
+          <Link
+            to="/"
+            className="block py-2 hover:text-gray-300 transition duration-300"
+          >
+            Home
+          </Link>
+
+          <Link
+            to="/courses"
+            className="block py-2 hover:text-gray-300 transition duration-300"
+          >
+            Courses
+          </Link>
+
+          <Link
+            to="/about"
+            className="block py-2 hover:text-gray-300 transition duration-300"
+          >
+            About
+          </Link>
+          <Link
+            to="/contact"
+            className="block py-2 hover:text-gray-300 transition duration-300"
+          >
+            Contact
+          </Link>
         </nav>
 
         {loginStatus ? (
@@ -78,24 +103,61 @@ const Header = () => {
       </div>
 
       {/* Sidebar for mobile view */}
-      {sidebarOpen && (
+      {/* {sidebarOpen && (
         <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={toggleSidebar}></div>
-      )}
-      <div className={`fixed text-center top-0 right-0 h-full w-64 bg-neutral-900 p-4 transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
-        <button className="text-white text-3xl float-right" onClick={toggleSidebar}>
+      )} */}
+      <div
+        className={`fixed text-center top-0 right-0 h-full w-64 bg-neutral-900 p-4 transform transition-transform duration-300 ${
+          sidebarOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <button
+          className="text-white text-3xl float-right"
+          onClick={toggleSidebar}
+        >
           <IoMdClose />
         </button>
         <div className="flex flex-col mt-4">
-          <Link to="/" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Home</Link>
-          {loginStatus && (
-            <Link to="/courses" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Courses</Link>
-          )}
-          <Link to="/about" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">About</Link>
-          <Link to="/contact" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Contact</Link>
+          <Link
+            to="/"
+            className="py-2 text-white hover:text-gray-300 transition duration-300"
+          >
+            Home
+          </Link>
+
+          <Link
+            to="/courses"
+            className="py-2 text-white hover:text-gray-300 transition duration-300"
+          >
+            Courses
+          </Link>
+
+          <Link
+            to="/about"
+            className="py-2 text-white hover:text-gray-300 transition duration-300"
+          >
+            About
+          </Link>
+          <Link
+            to="/contact"
+            className="py-2 text-white hover:text-gray-300 transition duration-300"
+          >
+            Contact
+          </Link>
           {loginStatus ? (
-            <button onClick={logoutHandler} className="py-2 text-white hover:text-gray-300 transition duration-300">Logout</button>
+            <button
+              onClick={logoutHandler}
+              className="py-2 text-white hover:text-gray-300 transition duration-300"
+            >
+              Logout
+            </button>
           ) : (
-            <Link to="/auth" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Login</Link>
+            <Link
+              to="/auth"
+              className="py-2 text-white hover:text-gray-300 transition duration-300"
+            >
+              Login
+            </Link>
           )}
         </div>
       </div>
