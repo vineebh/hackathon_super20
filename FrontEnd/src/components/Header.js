@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signOutUser } from "../firebase/auth";
 import { setIdToken, setLoginStatus, setIsLogin } from "../store/authSlice";
+import { IoMdClose } from "react-icons/io";
 
 const Header = () => {
   const loginStatus = useSelector((state) => state.auth.islogin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const logoutHandler = async () => {
     try {
@@ -19,22 +20,29 @@ const Header = () => {
       dispatch(setIsLogin(false));
       navigate("/auth");
     } catch (error) {
-      console.log(error);
+      console.error("Logout error:", error);
     }
   };
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const handleLinkClick = () => {
+    setSidebarOpen(false);
+  };
+
+  const handleLinkClick = () => {
+    setMenuOpen(false);
   };
 
   return (
     <header className="bg-gradient-to-r from-neutral-900 to-zinc-600 shadow-lg fixed w-full top-0 left-0 z-50">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="container mx-auto px-4 py-4 flex justify-evenly items-center">
         <div className="text-2xl md:text-3xl font-bold text-white">EduTech</div>
 
-        {/* Hamburger Menu for Mobile */}
         <div className="md:hidden flex items-center">
-          <button className="text-white focus:outline-none" onClick={toggleMenu}>
+          <button className="text-white focus:outline-none" onClick={toggleSidebar}>
             <svg
               className="w-8 h-8"
               fill="none"
@@ -42,76 +50,60 @@ const Header = () => {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-              ></path>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          {/* Authentication Buttons for Mobile */}
-      <div className={`md:hidden w-full flex justify-center px-4 ${menuOpen ? "block" : "show"}`}>
+        </div>
+
+        <nav className="hidden md:flex md:items-center space-x-8 text-lg md:text-2xl text-white mx-auto">
+          <Link to="/" className="block py-2 hover:text-gray-300 transition duration-300">Home</Link>
+          {loginStatus && (
+            <Link to="/courses" className="block py-2 hover:text-gray-300 transition duration-300">Courses</Link>
+          )}
+          <Link to="/about" className="block py-2 hover:text-gray-300 transition duration-300">About</Link>
+          <Link to="/contact" className="block py-2 hover:text-gray-300 transition duration-300">Contact</Link>
+        </nav>
+
         {loginStatus ? (
           <button
             onClick={logoutHandler}
-            className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-800 transition duration-300"
+            className="py-1 px-3 text-sm rounded bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-lg transition-shadow duration-300 hover:scale-105"
           >
             Logout
           </button>
         ) : (
           <Link
             to="/auth"
-            className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-800 transition duration-300"
+            className="py-1 px-4 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
           >
             Login
           </Link>
         )}
       </div>
-        </div>
 
-        {/* Navigation Links for Desktop */}
-        <nav
-          className={`${
-            menuOpen ? "block" : "hidden"
-          } md:flex space-x-8 text-lg md:text-2xl text-white absolute md:relative top-16 left-0 md:top-auto md:left-auto bg-neutral-900 md:bg-transparent w-full md:w-auto transition-transform duration-300`}
-        >
-          <Link to="/" className="block py-2 px-4 md:py-0 md:px-0 hover:text-gray-300 transition duration-300 text-lg font-medium">
-            Home
-          </Link>
-          <Link to="/courses" className="block py-2 px-4 md:py-0 md:px-0 hover:text-gray-300 transition duration-300 text-lg font-medium">
-            Courses
-          </Link>
-          <Link to="/about" className="block py-2 px-4 md:py-0 md:px-0 hover:text-gray-300 transition duration-300 text-lg font-medium">
-            About
-          </Link>
-          <Link to="/contact" className="block py-2 px-4 md:py-0 md:px-0 hover:text-gray-300 transition duration-300 text-lg font-medium">
+      {/* Sidebar for mobile view */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={toggleSidebar}></div>
+      )}
+      <div className={`fixed text-center top-0 right-0 h-full w-64 bg-neutral-900 p-4 transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <button className="text-white text-3xl float-right" onClick={toggleSidebar}>
+          <IoMdClose />
+        </button>
+        <div className="flex flex-col mt-4">
+          <Link to="/" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Home</Link>
+          {loginStatus && (
+            <Link to="/courses" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Courses</Link>
+          )}
+          <Link to="/about" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">About</Link>
+          <Link to="/contact" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Contact</Link>
 
-            Contact
-          </Link>
-        </nav>
-
-        {/* Authentication Buttons for Desktop */}
-        <div className="space-x-2 hidden md:flex">
           {loginStatus ? (
-            <button
-              onClick={logoutHandler}
-              className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-800 transition duration-300"
-            >
-              Logout
-            </button>
+            <button onClick={logoutHandler} className="py-2 text-white hover:text-gray-300 transition duration-300">Logout</button>
           ) : (
-            <Link
-              to="/auth"
-              className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-800 transition duration-300"
-            >
-              Login
-            </Link>
+            <Link to="/auth" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Login</Link>
           )}
         </div>
       </div>
-
-      
     </header>
   );
 };
