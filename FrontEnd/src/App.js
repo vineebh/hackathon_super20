@@ -8,6 +8,7 @@ import Auth from "./components/Auth/Auth";
 import { AuthProvider } from "./contexts/authContext"; 
 import Test from "./Pages/Test";
 import Courses from "./Pages/Courses";
+import Assessment from "./Pages/Assessment";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/test" element={<Test/>}/>
-            <Route path="/courses" element={<Courses/>}/>
+            <Route path="/assessment" element={<Assessment />}/>
           </Routes>
         </main>
       </div>
