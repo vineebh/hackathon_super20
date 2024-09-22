@@ -9,9 +9,9 @@ const Auth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [authData, setAuthData] = useState({
-    name: "",
-    email: "",
-    password: "",
+  name: "",
+  email: "",
+  password: "",
   });
   const [errors, setErrors] = useState({
     name: "",

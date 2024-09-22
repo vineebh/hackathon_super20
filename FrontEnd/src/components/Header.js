@@ -32,6 +32,10 @@ const Header = () => {
     setSidebarOpen(false);
   };
 
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <header className="bg-gradient-to-r from-neutral-900 to-zinc-600 shadow-lg fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-evenly items-center">
@@ -92,6 +96,7 @@ const Header = () => {
           )}
           <Link to="/about" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">About</Link>
           <Link to="/contact" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Contact</Link>
+
           {loginStatus ? (
             <button onClick={logoutHandler} className="py-2 text-white hover:text-gray-300 transition duration-300">Logout</button>
           ) : (
