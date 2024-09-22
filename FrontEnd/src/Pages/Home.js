@@ -37,7 +37,7 @@ const Home = () => {
         <img
           src="https://img.freepik.com/free-photo/scene-with-business-person-working-futuristic-office-job_23-2151003708.jpg?t=st=1723794847~exp=1723798447~hmac=ff6fb5eb3ccf3edb81bc7ff9adcf65c4ca4a8a6f955b6cedc3328a140565e048&w=996"
           alt="Education"
-          className="absolute inset-0 object-cover w-full h-full opacity-50"
+          className="absolute inset-0  object-fill  w-full h-full opacity-50 mt-5"
         />
 
         <div className="relative z-10 text-center px-6 sm:px-12 py-16 bg-gray-900 bg-opacity-80 rounded-lg shadow-lg mx-auto max-w-4xl"> {/* Changed background to darker gray */}

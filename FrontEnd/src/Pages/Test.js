@@ -4,7 +4,7 @@ const Test = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8081/courses")
+        fetch("http://localhost:3000/courses")
             .then(res => res.json())
             .then(data => setCourses(data))
             .catch(error => console.log('Fetch error:', error));
