@@ -1,8 +1,14 @@
 import React from 'react';
 import '.././index.css'; 
+import { useNavigate } from 'react-router-dom';
 
 const Course = ({ courseData }) => {
   const { courseName, description, image, professorName, duration } = courseData;
+  const navigate = useNavigate();
+
+  const asses =()=>{
+    navigate("/Assessment")
+  }
 
   return (
 
@@ -41,7 +47,7 @@ const Course = ({ courseData }) => {
       <div className="flex justify-center sm:justify-end mt-4 sm:mt-6 lg:mt-8">
         <button
           className="py-2 px-4 sm:py-2.5 sm:px-6 md:py-3 md:px-8 lg:py-3 lg:px-8 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
-        >
+        onClick={asses}>
           Enroll
         </button>
       </div>
