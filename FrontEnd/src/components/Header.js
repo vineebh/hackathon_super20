@@ -32,10 +32,6 @@ const Header = () => {
     setSidebarOpen(false);
   };
 
-  const handleLinkClick = () => {
-    setMenuOpen(false);
-  };
-
   return (
     <header className="bg-gradient-to-r from-neutral-900 to-zinc-600 shadow-lg fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-evenly items-center">
