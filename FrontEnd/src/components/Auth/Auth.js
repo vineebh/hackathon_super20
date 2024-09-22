@@ -4,15 +4,14 @@ import { useNavigate } from "react-router";
 import { setIsLogin, setIdToken, setLoginStatus } from "../../store/authSlice";
 import { signInUserEmailAndPass, createUserEmailAndPass, signInWithGoogle } from "../../firebase/auth";
 
-
 const Auth = () => {
   const isLogin = useSelector((state) => state.auth.islogin);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [authData, setAuthData] = useState({
-  name: "",
-  email: "",
-  password: "",
+    name: "",
+    email: "",
+    password: "",
   });
   const [errors, setErrors] = useState({
     name: "",
@@ -41,6 +40,7 @@ const Auth = () => {
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
     }
+    
   };
 
   const handleSubmit = async (e) => {
@@ -75,7 +75,7 @@ const Auth = () => {
         localStorage.setItem("idToken", token);
         dispatch(setIdToken(token));
         dispatch(setIsLogin(true));
-        navigate('/home');
+        navigate('/auth'); // Redirect to the login page after signup
       }
     } catch (error) {
       console.error("Authentication error:", error.message);
@@ -83,10 +83,16 @@ const Auth = () => {
         ...prevErrors,
         firebase: error.message,
       }));
+    }
+    setAuthData({
+      name: "",
+      email: "",
+      password: "",
+    })
   };
-}
+
   const toggleAuthMode = () => {
-  dispatch(setIsLogin(!isLogin));
+    dispatch(setIsLogin(!isLogin));
   };
 
   const loginWithGoogleHandler = async () => {
@@ -104,7 +110,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen flex items-center justify-center">
+    <div className="bg-gray-900 min-h-screen flex items-center justify-center mt-10">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-3xl font-bold text-red-500 mb-6 text-center">
           {isLogin ? "Login" : "Signup"}
@@ -154,9 +160,7 @@ const Auth = () => {
               onChange={handleChange}
               className="w-full p-2 border border-gray-700 rounded-md bg-gray-900 text-white"
             />
-
             {errors.password && <p className="text-red-500">{errors.password}</p>}
-
           </div>
           <button
             type="submit"

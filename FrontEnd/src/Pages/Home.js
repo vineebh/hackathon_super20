@@ -32,7 +32,7 @@ const Home = () => {
 
     <div className="bg-gradient-to-r from-slate-700 to-slate-900 min-h-screen text-white">
       {/* Hero Section */}
-      <div className="relative w-full bg-gradient-to-r from-slate-700 to-slate-900 py-16"> {/* Changed background to darker gray */}
+      <div className="relative w-full bg-gradient-to-r from-slate-700 to-slate-900 py-16 mt-20"> {/* Changed background to darker gray */}
 
         <img
           src="https://img.freepik.com/free-photo/scene-with-business-person-working-futuristic-office-job_23-2151003708.jpg?t=st=1723794847~exp=1723798447~hmac=ff6fb5eb3ccf3edb81bc7ff9adcf65c4ca4a8a6f955b6cedc3328a140565e048&w=996"
