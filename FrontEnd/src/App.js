@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Courses from "./Pages/Courses";
+import Assessment from "./Pages/Assessment";
 import Home from "./Pages/Home";
 import Test from "./Pages/Test";
 import Exam from "./Pages/MCQ";
@@ -22,7 +23,11 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+
           <Route path="/courses" element={<Courses />} />
+
+          <Route path="/assessment" element={<Assessment />}/>
+          
 
           {/* Redirect to home if logged in, otherwise show Auth */}
           <Route
@@ -31,6 +36,12 @@ function App() {
           />
 
           
+
+          {/* Protecting other assessment */}
+          <Route 
+            path="/assessment" 
+            element={loginStatus ? <Assessment /> : <Navigate to="/auth" />} 
+          />
 
           {/* Protecting other pages */}
           <Route

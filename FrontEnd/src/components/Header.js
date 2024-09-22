@@ -29,6 +29,12 @@ const Header = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const handleLinkClick = () => {
+    setSidebarOpen(false);
+  };
+
+
+
   return (
     <header className="bg-gradient-to-r from-neutral-900 to-zinc-600 shadow-lg fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-evenly items-center">
@@ -118,32 +124,12 @@ const Header = () => {
           <IoMdClose />
         </button>
         <div className="flex flex-col mt-4">
-          <Link
-            to="/"
-            className="py-2 text-white hover:text-gray-300 transition duration-300"
-          >
-            Home
-          </Link>
-
-          <Link
-            to="/courses"
-            className="py-2 text-white hover:text-gray-300 transition duration-300"
-          >
-            Courses
-          </Link>
-
-          <Link
-            to="/about"
-            className="py-2 text-white hover:text-gray-300 transition duration-300"
-          >
-            About
-          </Link>
-          <Link
-            to="/contact"
-            className="py-2 text-white hover:text-gray-300 transition duration-300"
-          >
-            Contact
-          </Link>
+          <Link to="/" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Home</Link>
+          {loginStatus && (
+            <Link to="/courses" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Courses</Link>
+          )}
+          <Link to="/about" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">About</Link>
+          <Link to="/contact" onClick={handleLinkClick} className="py-2 text-white hover:text-gray-300 transition duration-300">Contact</Link>
           {loginStatus ? (
             <button
               onClick={logoutHandler}
