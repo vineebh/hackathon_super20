@@ -9,21 +9,21 @@ const Home = () => {
       title: "Course Title 1",
       description: "A brief description of what the course is about and what students will learn.",
       imageUrl: "https://via.placeholder.com/400x300?text=Course+1",
-      link: "/courses/1",
+      link: "/courses",
     },
     {
       id: 2,
       title: "Course Title 2",
       description: "A brief description of what the course is about and what students will learn.",
       imageUrl: "https://via.placeholder.com/400x300?text=Course+2",
-      link: "/courses/2",
+      link: "/courses",
     },
     {
       id: 3,
       title: "Course Title 3",
       description: "A brief description of what the course is about and what students will learn.",
       imageUrl: "https://via.placeholder.com/400x300?text=Course+3",
-      link: "/courses/3",
+      link: "/courses",
     },
     // Add more courses as needed
   ];
@@ -44,7 +44,7 @@ const Home = () => {
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-fuchsia-500 to-cyan-500  bg-clip-text text-transparent"> {/* Changed heading color to blue */}
 
 
-            Welcome to EduTech
+            Welcome to EduMinds
           </h1>
           <p className="text-base sm:text-lg md:text-xl mb-8 text-gray-300">
             The beautiful thing about learning is that no one can take it away from you.
