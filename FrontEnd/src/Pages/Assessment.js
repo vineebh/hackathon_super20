@@ -36,7 +36,13 @@ const Assessment = () => {
   const submitHandler = () => {
     switch (selectedOption) {
       case "Beginner":
-        navigate("/dashboard");
+        navigate("/dashboard");// pass level
+        break;
+      case "Intermediate":
+        navigate("/dashboard");// pass level
+        break;
+      case "Advanced":
+        navigate("/dashboard");// pass level
         break;
       default:
         break;
@@ -54,7 +60,7 @@ const Assessment = () => {
           </h2>
 
           {/* Option Selection */}
-          <div className="flex justify-around mb-10 w-full">
+          <div className="w-full lg:w-2/2 p-4 hidden md:flex justify-around mb-10">
             {["Beginner", "Intermediate", "Advanced"].map((level) => (
               <button
                 key={level}
@@ -73,9 +79,10 @@ const Assessment = () => {
           {/* Display All Skills */}
           <div className="text-left mb-8 w-full">
             <p className="text-lg font-medium text-white mb-6">Skills by Level:</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10"> {/* Increased grid spacing */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 cursor-pointer"> {/* Increased grid spacing */}
               {Object.entries(skills).map(([level, skillList]) => (
                 <div
+                onClick={() => handleOptionChange(level)}
                   key={level}
                   className={`p-6 rounded-lg shadow-md ${
                     selectedOption === level ? "bg-purple-700 border-2 border-purple-500" : "bg-gray-700"
