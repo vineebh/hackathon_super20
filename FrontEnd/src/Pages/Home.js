@@ -6,36 +6,48 @@ const Home = () => {
   const courses = [
     {
       id: 1,
-      title: "Course Title 1",
-      description: "A brief description of what the course is about and what students will learn.",
-      imageUrl: "https://via.placeholder.com/400x300?text=Course+1",
+      title: "Python",
+      description:
+        "Python is a versatile, high-level programming language known for its simplicity, readability, and broad applicability across various fields like web development, data science, and AI.",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8E6Xlh2VtOsV4vrygfHVm6xKybmctIDBYnA&s",
+      professorName: "Dr. John Smith",
+      duration: "40 Hours",
       link: "/courses",
     },
     {
       id: 2,
-      title: "Course Title 2",
-      description: "A brief description of what the course is about and what students will learn.",
-      imageUrl: "https://via.placeholder.com/400x300?text=Course+2",
+      title: "Excel",
+      description:
+        "Excel is a spreadsheet software by Microsoft used for data organization, analysis, and visualization, featuring functions, formulas, and pivot tables for efficient data management.",
+      imageUrl:
+        "https://omtsdigest.com/wp-content/uploads/2016/02/excel-1598646848.jpeg",
+      professorName: "Dr. Alice Johnson",
+      duration: "30 Hours",
       link: "/courses",
     },
     {
       id: 3,
-      title: "Course Title 3",
-      description: "A brief description of what the course is about and what students will learn.",
-      imageUrl: "https://via.placeholder.com/400x300?text=Course+3",
+      title: "Data Science",
+      description:
+        "Data science is a multidisciplinary field that uses statistical methods, algorithms, and machine learning to extract insights and knowledge from structured and unstructured data for decision-making and predictive analysis.",
+      imageUrl:
+        "https://www.fsm.ac.in/blog/wp-content/uploads/2022/07/FUqHEVVUsAAbZB0.jpg",
+      professorName: "Prof. Mark Davis",
+      duration: "40 Hours",
       link: "/courses",
     },
-    // Add more courses as needed
   ];
 
   return (
 
-    <div className="bg-gradient-to-r from-slate-700 to-slate-900 min-h-screen text-white">
+    <div className="bg-gradient-to-r pt-2 from-slate-700 to-slate-900 min-h-screen text-white">
       {/* Hero Section */}
       <div className="relative w-full bg-gradient-to-r from-slate-700 to-slate-900 py-16  "> {/* Changed background to darker gray */}
 
         <img
-          src="https://img.freepik.com/free-photo/scene-with-business-person-working-futuristic-office-job_23-2151003708.jpg?t=st=1723794847~exp=1723798447~hmac=ff6fb5eb3ccf3edb81bc7ff9adcf65c4ca4a8a6f955b6cedc3328a140565e048&w=996"
+          src="${process.env.PUBLIC_URL}/img/bg.jpg"
+          //https://img.freepik.com/free-photo/scene-with-business-person-working-futuristic-office-job_23-2151003708.jpg?t=st=1723794847~exp=1723798447~hmac=ff6fb5eb3ccf3edb81bc7ff9adcf65c4ca4a8a6f955b6cedc3328a140565e048&w=996
           alt="Education"
           className="absolute inset-0  object-fill  w-full h-full opacity-50 mt-5"
         />
@@ -71,13 +83,15 @@ const Home = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-xl mx-auto">
           {courses.map((course) => (
+             <Link key={course.id} to={`/courses`}>
             <CourseCard
               key={course.id}
               title={course.title}
               description={course.description}
               imageUrl={course.imageUrl}
-              link={course.link}
+              link={course.link} //link to course
             />
+            </Link>
           ))}
         </div>
       </div>
