@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CourseCard = ({ title, description, imageUrl, link }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto my-4">
+    <div className="bg--gradient-to-l border-2 border-blue-500/50 shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto my-4">
       {/* Image Section */}
       <img
         src={imageUrl}
@@ -13,10 +13,10 @@ const CourseCard = ({ title, description, imageUrl, link }) => {
       
       {/* Content Section */}
       <div className="p-4 md:p-5">
-        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-600 mb-2">
+        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-200 mb-2">
           {title}
         </h3>
-        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-4">
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white mb-4">
           {description}
         </p>
         
