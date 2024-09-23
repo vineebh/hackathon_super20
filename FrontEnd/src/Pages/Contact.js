@@ -18,7 +18,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen py-12 sm:py-16 mt-16">
+    <div className="bg-gray-900 min-h-screen py-12 sm:py-16 mt-8">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-3xl">
         {/* Contact Heading */}
         <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6 text-center">
