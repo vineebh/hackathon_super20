@@ -9,6 +9,7 @@ import DashBoard from "./Pages/DashBoard";
 import VideoPlayerPage from "./components/VideoPlayePager"; // Import the VideoPlayerPage
 import Header from "./components/Header";
 import Assessment from "./Pages/Assessment";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/auth" element={<Auth/>} />
           <Route path="/Assessment" element={<Assessment/>} />
 
           {/* New route for the video player page */}

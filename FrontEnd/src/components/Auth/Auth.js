@@ -69,7 +69,7 @@ const Auth = () => {
         localStorage.setItem("idToken", token);
         dispatch(setIdToken(token));
         dispatch(setLoginStatus(true));
-        navigate('/home');
+        navigate('/courses');
       } else {
         const response = await createUserEmailAndPass(email, password);
         const token = response.user.accessToken;
