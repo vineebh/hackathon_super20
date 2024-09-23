@@ -19,6 +19,7 @@ const Header = () => {
       dispatch(setLoginStatus(false));
       dispatch(setIsLogin(false));
       navigate("/auth");
+      handleLinkClick();
       console.log("clicked");
     } catch (error) {
       console.error("Logout error:", error);
@@ -36,7 +37,9 @@ const Header = () => {
   return (
     <header className="bg-gradient-to-r from-neutral-900 to-zinc-600 shadow-lg fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-4 py-2 flex justify-between  lg:flex lg:justify-evenly lg:items-center ">
-        <div className="text-2xl md:text-3xl font-bold text-white">EduTech</div>
+        <div className="text-2xl md:text-3xl font-bold text-white">
+          <span className="pt-4">EduMinds</span>
+        </div>
 
         <div className="md:hidden flex items-center">
           <button
@@ -92,14 +95,14 @@ const Header = () => {
         {loginStatus ? (
           <button
             onClick={logoutHandler}
-            className=" hidden lg:flex md:flex py-1 px-3 text-sm rounded bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-lg transition-shadow duration-300 hover:scale-105"
+            className=" hidden lg:flex md:flex py-3 px-3 text-sm rounded bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
           >
             Logout
           </button>
         ) : (
           <Link
             to="/auth"
-            className=" hidden lg:flex md:flex py-1 px-4 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
+            className=" hidden lg:flex md:flex py-3 px-4 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
           >
             Login
           </Link>
@@ -160,6 +163,7 @@ const Header = () => {
           ) : (
             <Link
               to="/auth"
+              onClick={handleLinkClick}
                className="py-1 px-2 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
             >
               Login
