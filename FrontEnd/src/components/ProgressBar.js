@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProgressBar = () => {
   const courseLevel = 'Intermediate'; // Example course level
-  const progressPercentage = 70; // Example progress percentage
+  const progressPercentage = 55; // Example progress percentage
 
   return (
     <div className="w-full max-w-xs mx-auto bg-gray-800 rounded-lg shadow-lg flex flex-col p-6 ">
