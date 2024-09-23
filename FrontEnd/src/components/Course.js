@@ -11,7 +11,7 @@ const Course = ({ courseData }) => {
 
   const enrollHandler =()=>{
     if(loginStatus === true){
-      navigate("/Assessment")
+      navigate("/Assessment") // pass courseName
     }else{
       navigate('/auth');
     }
