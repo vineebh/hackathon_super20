@@ -43,7 +43,6 @@ const Courses = () => {
           <div
             key={data.id}
             className="relative w-full max-w-full mx-auto px-8 rounded-lg"
-
           >
             <Course courseData={data} />
           </div>
