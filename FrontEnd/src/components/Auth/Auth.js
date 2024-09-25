@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { setIsLogin, setIdToken, setLoginStatus } from "../../store/authSlice";
-import { signInUserEmailAndPass, createUserEmailAndPass, signInWithGoogle } from "../../firebase/auth";
+import { useNavigate } from "react-router-dom"; // Use 'react-router-dom' for the latest version
+import { createUserEmailAndPass, signInUserEmailAndPass, signInWithGoogle } from "../../firebase/auth";
+import { setIdToken, setIsLogin, setLoginStatus } from "../../store/authSlice";
 
 const Auth = () => {
   const isLogin = useSelector((state) => state.auth.islogin);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [authData, setAuthData] = useState({
-  name: "",
-  email: "",
-  password: "",
+    name: "",
+    email: "",
+    password: "",
   });
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     password: "",
+    firebase: "",
   });
 
   const handleChange = (e) => {
@@ -40,7 +41,6 @@ const Auth = () => {
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
     }
-    
   };
 
   const handleSubmit = async (e) => {
@@ -54,6 +54,7 @@ const Auth = () => {
       }));
       return;
     }
+
     if (password.length < 8) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -61,10 +62,10 @@ const Auth = () => {
       }));
       return;
     }
+
     try {
       if (isLogin) {
         const response = await signInUserEmailAndPass(email, password);
-        console.log(response)
         const token = response.user.accessToken;
         localStorage.setItem("idToken", token);
         dispatch(setIdToken(token));
@@ -76,7 +77,7 @@ const Auth = () => {
         localStorage.setItem("idToken", token);
         dispatch(setIdToken(token));
         dispatch(setIsLogin(true));
-        navigate('/auth'); // Redirect to the login page after signup
+        navigate('/courses');
       }
     } catch (error) {
       console.error("Authentication error:", error.message);
@@ -85,31 +86,26 @@ const Auth = () => {
         firebase: error.message,
       }));
     }
-    setAuthData({
-      name: "",
-      email: "",
-      password: "",
-    })
   };
 
   const toggleAuthMode = () => {
     dispatch(setIsLogin(!isLogin));
+    setErrors({ name: "", email: "", password: "", firebase: "" }); // Clear errors when toggling
   };
 
   const loginWithGoogleHandler = async () => {
     try {
       const result = await signInWithGoogle();
-      const token = result.token;
+      const token = result.user.accessToken; // Make sure to use 'result.user.accessToken'
       localStorage.setItem("idToken", token);
       dispatch(setIdToken(token));
       dispatch(setLoginStatus(true));
       dispatch(setIsLogin(true));
-      navigate('/home');
+      navigate('/courses');
     } catch (error) {
       console.error("Google Sign-In Error:", error.message);
     }
   };
-
   return (
     <div className="bg-gray-900 min-h-screen flex items-center justify-center mt-10">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
