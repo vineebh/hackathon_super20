@@ -67,9 +67,9 @@ app.get('/course', async (req, res) => {
     }
 });
 
-app.get('/courses',(req,res)=>{
+app.get('/courses',async (req,res)=>{
     try {
-        const [data] = db.query('SELECT * FROM courses');
+        const [data] = await db.query('SELECT * FROM courses');
         res.json(data);
     } catch (err) {
         console.error("Error fetching courses:", err);
