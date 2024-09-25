@@ -8,15 +8,14 @@ app.use(cors())
 const db=  mysql.createConnection({
     host:"localhost",
     user:"root",
-    password:"",
-    database:"eduMinds"
+    database:"edu-minds"
 })
 app.get('/',(re,res)=>{
     return res.json("from Backend side")
 
 })
 app.get('/courses',(req,res)=>{
-    const sql = "SELECT * FROM courses"
+    const sql = "SELECT * FROM datascience_course"
     db.query(sql,(err,data)=>{
         if(err) return res.json(err);
         return res.json(data);
