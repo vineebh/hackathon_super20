@@ -79,7 +79,6 @@ app.get('/skills', async (req,res)=>{
 })
 
 app.get('/courses', async (req, res) => {
-
     try {
         const [data] = await db.query('select * from courses')
         res.json(data)
@@ -101,6 +100,11 @@ app.post('/userdata', async (req, res) => {
         console.log(error)
     }
 })
+
+
+app.listen(process.env.PORT, () => {
+    console.log("Server Started!");
+});
 
 
 app.listen(process.env.PORT, () => {
