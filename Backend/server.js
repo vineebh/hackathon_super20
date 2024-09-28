@@ -67,15 +67,28 @@ app.get('/course', async (req, res) => {
     }
 });
 
-app.get('/courses',async (req,res)=>{
-    try {
-        const [data] = await db.query('SELECT * FROM courses');
-        res.json(data);
-    } catch (err) {
-        console.error("Error fetching courses:", err);
-        res.status(500).json({ error: 'Server Error' });
+app.get('/skills', async (req,res)=>{
+
+    try{
+        const [data]= await db.query('select * from level where C_ID=101');
+        res.json(data)
+    }
+    catch(err){
+        res.status(500).json({error:"Error fetching data"})
     }
 })
+
+app.get('/courses', async(req,res)=>{
+
+    try{
+        const[data]=await db.query('select * from courses')
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({error:'Courses Not Found'})
+    }
+})
+
 
 app.listen(process.env.PORT, () => {
     console.log("Server Started!");
