@@ -68,9 +68,9 @@ app.get('/course', async (req, res) => {
 });
 
 app.get('/skills', async (req,res)=>{
-
+    const C_ID = req.params.C_ID;
     try{
-        const [data]= await db.query('select * from level where C_ID=101');
+        const [data]= await db.query('select * from level where C_ID= ?',[C_ID]);
         res.json(data)
     }
     catch(err){
@@ -100,11 +100,6 @@ app.post('/userdata', async (req, res) => {
         console.log(error)
     }
 })
-
-
-app.listen(process.env.PORT, () => {
-    console.log("Server Started!");
-});
 
 
 app.listen(process.env.PORT, () => {
