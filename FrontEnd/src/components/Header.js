@@ -15,6 +15,7 @@ const Header = () => {
     try {
       await signOutUser();
       localStorage.removeItem("idToken");
+      localStorage.removeItem("userID");
       dispatch(setIdToken(null));
       dispatch(setLoginStatus(false));
       dispatch(setIsLogin(false));

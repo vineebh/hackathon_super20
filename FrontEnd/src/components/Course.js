@@ -5,14 +5,25 @@ import { useNavigate } from 'react-router-dom';
 import '.././index.css';
 
 
-const Course = ({ courseData }) => {
+const Course = ({ courseData , Enroll }) => {
   const {c_id, title, description, imageUrl, professorName, duration } = courseData;
   const loginStatus = useSelector((state) => state.auth.loginStatus);
   const navigate = useNavigate();
 
+
+  const btnLabel = Enroll.some(course => course.course_title === title) ? "Continue" : "Assess your level";
+
+  const enrolledCourse = Enroll.find(course => course.course_title === title);
+
+
   const enrollHandler = () => {
     if (loginStatus === true) {
-      navigate("/Assessment", { state: { courseTitle: title, C_ID: c_id } }); // Pass course title as state
+      if (enrolledCourse) {
+        const Level = enrolledCourse.level; // Get the level of the matched course
+        navigate("/dashboard", { state: { C_ID: c_id, level: Level, courseTitle: title } });
+      } else {
+        navigate("/Assessment", { state: { courseTitle: title, C_ID: c_id } });
+      }        
     } else {
       navigate('/auth');
     }
@@ -49,13 +60,13 @@ const Course = ({ courseData }) => {
         </div>
       </div>
 
-      {/* Enroll Button */}
+      {/* Assessment Button */}
       <div className="flex justify-center sm:justify-end mt-4 sm:mt-6 lg:mt-8">
         <button
           className="py-2 px-4 sm:py-2.5 sm:px-6 md:py-3 md:px-8 lg:py-3 lg:px-8 rounded-lg bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105"
           onClick={enrollHandler}
         >
-          Asses your level
+          {btnLabel}
         </button>
       </div>
     </div>

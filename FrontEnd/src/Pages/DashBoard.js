@@ -45,7 +45,7 @@ const DashBoard = () => {
       }
     };
 
-    postUserData();
+    //postUserData();
     fetchCourses();
 
   }, [C_ID, courseTitle, level, userInfo]);
