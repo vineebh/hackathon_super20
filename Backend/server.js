@@ -133,10 +133,10 @@ app.get('/assessment/questions/:level', async (req, res) => {
 });
 
 app.post('/assessment/submit', async (req, res) => {
-    const { answers } = req.body;
-    let correctCount = 0;
 
     try {
+        const { answers } = req.body;
+        let correctCount = 0;
         for (const answer of answers) {
             const { questionId, selectedOption } = answer;
             const [rows] = await db.query('SELECT correct_option FROM python_qna WHERE id = ?', [questionId]);
@@ -148,11 +148,41 @@ app.post('/assessment/submit', async (req, res) => {
                 }
             }
         }
-
         res.status(200).json({ correct: correctCount, total: answers.length });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Server Error' });
+    }
+});
+
+
+app.get('/checkuser', async (req, res) => {
+    try {
+        const { email } = req.body; // Ensure email is passed in the body
+        console.log(email);
+
+        // Check if the email is enter or not
+        if (!email) {
+            return res.status(400).send('Email is required');
+        }
+
+        // Query to fetch only the course_title for the entered email
+        const [data] = await db.query('SELECT course_title FROM users WHERE email_id = ?', [email]);
+
+        // Check if the email exists and has associated course titles
+        if (data.length > 0) {
+            console.log("Email exists, returning course titles:");
+            console.log(data);
+            return res.status(200).json({ course_titles: data });
+        }
+
+        // If no courses are found for the entered email
+        console.log('Email not found or no courses associated');
+        return res.status(404).json({ msg: 'No courses found for this email' });
+    } catch (error) {
+        console.log('Error occurred:', error);
+        res.status(500).json({ error: 'Error during fetching data' });
     }
 });
 

@@ -31,6 +31,7 @@ const Chatbot = () => {
       // Add Gemini's response to the chat history
       setChatHistory((prevChat) => [
         ...prevChat,
+        
         { type: "user", message: userInput },
         { type: "bot", message: response.text() },
       ]);
@@ -48,19 +49,11 @@ const Chatbot = () => {
   };
 
   return (
-
-    <div className="flex flex-col h-full w-full max-h-screen max-w-screen mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h1 className="text-4xl font-bold text-center text-blue-700 mb-6">
-        Edubot
-      </h1>
-
     <div className="max-w-lg mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
-
       <h1 className="text-4xl font-bold text-center text-blue-700 mb-6">Edu Bot</h1>
 
+      <div className="chat-container h-80 overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner">
 
-      {/* Chat container with height set to fill available space */}
-      <div className="flex-grow overflow-y-auto rounded-lg bg-gray-50 p-4 shadow-inner">
         {chatHistory.map((message, index) => (
           <div
             key={index}
@@ -79,6 +72,7 @@ const Chatbot = () => {
           </div>
         ))}
       </div>
+
 
       {/* Input and buttons section */}
       <div className="flex mt-6">

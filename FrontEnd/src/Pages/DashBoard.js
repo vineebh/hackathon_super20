@@ -48,7 +48,7 @@ const DashBoard = () => {
     postUserData();
     fetchCourses();
 
-  }, [C_ID, courseTitle, level, userInfo]);
+  }, []);
 
   return (
     <main className="bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen py-8">
@@ -67,13 +67,16 @@ const DashBoard = () => {
             />
             <div className="w-48 h-12 bg-gray-700 rounded-full relative shadow-lg transition duration-500 ease-in-out flex items-center">
               <div
+
                 className={`absolute w-1/2 h-full bg-gradient-to-r from-yellow-400 to-teal-500 rounded-full transition duration-500 ease-in-out ${view === "article" ? "translate-x-full" : "translate-x-0"}`}
+
               />
               <div className="flex justify-between w-full text-white text-sm font-semibold p-2">
                 <span className="flex items-center">Video</span>
                 <span className="flex items-center">Article</span>
               </div>
               <div
+
                 className={`absolute left-2 w-10 h-10 bg-gray-800 rounded-full shadow-lg flex items-center justify-center transition-transform duration-500 ease-in-out transform ${view === "article" ? "translate-x-36" : "translate-x-0"}`}
               >
                 <span className="text-white font-semibold">{view === "video" ? "▶️" : "📰"}</span>
@@ -83,11 +86,14 @@ const DashBoard = () => {
 
           {/* Conditional Rendering based on the selected view */}
           <div className="text-center text-white">
+
             {view === "video" ? <Videos courses={courses} /> : <Article courses={courses} />}
+
           </div>
 
           {/* Display fetched courses */}
           <div className="mt-6">
+
             {loading ? (
               <p className="text-white">Loading courses...</p>
             ) : error ? (
