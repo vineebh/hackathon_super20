@@ -104,7 +104,33 @@ app.post('/userdata', async (req, res) => {
 
 
     //everything above this is dynamic api
-      
+    app.get('/checkuser', async (req, res) => {
+        try {
+            const { email } = req.query; // Extract email from the query string
+            console.log("Email received:", email);
+    
+            // Check if the email is present
+            if (!email) {
+                return res.status(400).json({ msg: 'Email is required' });
+            }
+    
+            // Query to fetch only the course_title for the entered email
+            const [data] = await db.query('SELECT course_title,level FROM users WHERE email_id = ?', [email]);
+    
+            // Check if the email exists and has associated course titles
+            if (data.length > 0) {
+                return res.status(200).json({ data });
+            }
+    
+            // If no courses are found for the entered email
+            console.log('Email not found or no courses associated');
+            return res.status(404).json({ msg: 'No courses found for this email' });
+        } catch (error) {
+            console.error('Error occurred:', error);
+            res.status(500).json({ error: 'Error during fetching data' });
+        }
+    });
+    
     
 app.get('/assessment/questions/:level', async (req, res) => {
     const level = req.params.level;
@@ -153,36 +179,6 @@ app.post('/assessment/submit', async (req, res) => {
     catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Server Error' });
-    }
-});
-
-
-app.get('/checkuser', async (req, res) => {
-    try {
-        const { email } = req.body; // Ensure email is passed in the body
-        console.log(email);
-
-        // Check if the email is enter or not
-        if (!email) {
-            return res.status(400).send('Email is required');
-        }
-
-        // Query to fetch only the course_title for the entered email
-        const [data] = await db.query('SELECT course_title FROM users WHERE email_id = ?', [email]);
-
-        // Check if the email exists and has associated course titles
-        if (data.length > 0) {
-            console.log("Email exists, returning course titles:");
-            console.log(data);
-            return res.status(200).json({ course_titles: data });
-        }
-
-        // If no courses are found for the entered email
-        console.log('Email not found or no courses associated');
-        return res.status(404).json({ msg: 'No courses found for this email' });
-    } catch (error) {
-        console.log('Error occurred:', error);
-        res.status(500).json({ error: 'Error during fetching data' });
     }
 });
 

@@ -45,10 +45,10 @@ const DashBoard = () => {
       }
     };
 
-    postUserData();
+    //postUserData();
     fetchCourses();
 
-  }, []);
+  }, [C_ID, courseTitle, level, userInfo]);
 
   return (
     <main className="bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen py-8">
@@ -76,7 +76,6 @@ const DashBoard = () => {
                 <span className="flex items-center">Article</span>
               </div>
               <div
-
                 className={`absolute left-2 w-10 h-10 bg-gray-800 rounded-full shadow-lg flex items-center justify-center transition-transform duration-500 ease-in-out transform ${view === "article" ? "translate-x-36" : "translate-x-0"}`}
               >
                 <span className="text-white font-semibold">{view === "video" ? "▶️" : "📰"}</span>
@@ -93,7 +92,6 @@ const DashBoard = () => {
 
           {/* Display fetched courses */}
           <div className="mt-6">
-
             {loading ? (
               <p className="text-white">Loading courses...</p>
             ) : error ? (

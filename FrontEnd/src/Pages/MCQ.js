@@ -70,6 +70,10 @@ const Exam = () => {
 
             const resultData = await response.json();
             setResult(`You answered ${resultData.correct} out of ${questions.length} questions correctly!`);
+<<<<<<< HEAD
+            navigate("/dashboard", { state: { C_ID, level, courseTitle } });
+            
+=======
             if(resultData.correct>=3){
               navigate("/dashboard", { state: { C_ID, level, courseTitle } });
                 console.log("Pass")
@@ -77,6 +81,7 @@ const Exam = () => {
             else{
                 console.log("Fail")
             }
+>>>>>>> 92e03396c1ea5304153b6943c7e1b4b6c3c0f60f
         } catch (error) {
             console.error('Error during submission:', error);
             setResult('An error occurred while submitting your answers. Please try again.');
