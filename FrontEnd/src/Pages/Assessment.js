@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const Assessment = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -9,7 +8,6 @@ const Assessment = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const userInfo = useSelector((state)=>state.auth.userInfo)
   const { courseTitle, C_ID } = location.state || {};
 
   useEffect(() => {
@@ -39,10 +37,12 @@ const Assessment = () => {
   const submitHandler = () => {
     if (selectedOption) {
       const level = selectedOption;
-      //const dateTime = new Date().toISOString();
-
-
-      navigate("/dashboard", { state: { C_ID, level, courseTitle } });
+      if (selectedOption == "Beginner"){
+        navigate("/dashboard" , { state: { C_ID, level, courseTitle }});
+      }
+      else {
+        navigate("/mcq" , { state: { C_ID, level, courseTitle }});
+      }
     }
   };
 
