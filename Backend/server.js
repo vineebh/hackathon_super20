@@ -159,10 +159,10 @@ app.get('/assessment/questions/:level', async (req, res) => {
 });
 
 app.post('/assessment/submit', async (req, res) => {
-    const { answers } = req.body;
-    let correctCount = 0;
 
     try {
+        const { answers } = req.body;
+        let correctCount = 0;
         for (const answer of answers) {
             const { questionId, selectedOption } = answer;
             const [rows] = await db.query('SELECT correct_option FROM python_qna WHERE id = ?', [questionId]);
@@ -174,9 +174,9 @@ app.post('/assessment/submit', async (req, res) => {
                 }
             }
         }
-
         res.status(200).json({ correct: correctCount, total: answers.length });
-    } catch (err) {
+    }
+    catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Server Error' });
     }
@@ -186,3 +186,6 @@ app.post('/assessment/submit', async (req, res) => {
 app.listen(process.env.PORT, () => {
     console.log("Server Started!");
 });
+
+
+

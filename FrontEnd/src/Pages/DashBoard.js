@@ -67,7 +67,9 @@ const DashBoard = () => {
             />
             <div className="w-48 h-12 bg-gray-700 rounded-full relative shadow-lg transition duration-500 ease-in-out flex items-center">
               <div
+
                 className={`absolute w-1/2 h-full bg-gradient-to-r from-yellow-400 to-teal-500 rounded-full transition duration-500 ease-in-out ${view === "article" ? "translate-x-full" : "translate-x-0"}`}
+
               />
               <div className="flex justify-between w-full text-white text-sm font-semibold p-2">
                 <span className="flex items-center">Video</span>
@@ -83,7 +85,9 @@ const DashBoard = () => {
 
           {/* Conditional Rendering based on the selected view */}
           <div className="text-center text-white">
+
             {view === "video" ? <Videos courses={courses} /> : <Article courses={courses} />}
+
           </div>
 
           {/* Display fetched courses */}
@@ -106,7 +110,9 @@ const DashBoard = () => {
 
         {/* Right section - Progress Bar */}
         <aside className="w-full lg:w-1/4 p-6 bg-gray-800 border border-gray-600 rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
+
           <ProgressBar Level={level} />
+          
         </aside>
       </section>
     </main>
