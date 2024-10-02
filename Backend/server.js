@@ -82,6 +82,45 @@ app.get('/course/:c_id', async (req, res) => {
 });
 
 
+app.get('/checkuser', async (req, res) => {
+    try {
+        const { email } = req.query; // Extract email from the query string
+
+        // Check if the email is present
+        if (!email) {
+            return res.status(400).json({ msg: 'Email is required' });
+        }
+
+        // Query to fetch the course_title and level for the entered email
+        const [data] = await db.query('SELECT course_title, level FROM users WHERE email_id = ?', [email]);
+
+        // Check if email exists in the database
+        if (data.length === 0) {
+            console.log(`Email not found: ${email}`);
+            return res.status(404).json({ msg: 'Email not found' });
+        }
+
+        // Check if email exists but no associated course titles
+        const userCourses = data.map(course => ({
+            course_title: course.course_title,
+            level: course.level
+        }));
+
+        if (userCourses.length > 0) {
+            return res.status(200).json({ data: userCourses });
+        }
+
+        // If no courses are found for the entered email
+        console.log('No courses associated with this email');
+        return res.status(404).json({ msg: 'No courses found for this email' });
+    } catch (error) {
+        console.error('Error occurred:', error);
+        res.status(500).json({ error: 'Error during fetching data' });
+    }
+});
+
+
+
 app.post('/userdata', async (req, res) => {
     
     // Destructure request body
@@ -96,6 +135,7 @@ app.post('/userdata', async (req, res) => {
         // Insert data into the database
         const query = 'INSERT INTO users (email_id, course_title, level, datentime) VALUES (?, ?, ?, NOW())';
         const result = await db.query(query, [email_id, course_title, Level]);
+        console.log(result)
     } catch (error) {
         console.error("Error in /userdata:", error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -104,32 +144,6 @@ app.post('/userdata', async (req, res) => {
 
 
     //everything above this is dynamic api
-    app.get('/checkuser', async (req, res) => {
-        try {
-            const { email } = req.query; // Extract email from the query string
-            console.log("Email received:", email);
-    
-            // Check if the email is present
-            if (!email) {
-                return res.status(400).json({ msg: 'Email is required' });
-            }
-    
-            // Query to fetch only the course_title for the entered email
-            const [data] = await db.query('SELECT course_title,level FROM users WHERE email_id = ?', [email]);
-    
-            // Check if the email exists and has associated course titles
-            if (data.length > 0) {
-                return res.status(200).json({ data });
-            }
-    
-            // If no courses are found for the entered email
-            console.log('Email not found or no courses associated');
-            return res.status(404).json({ msg: 'No courses found for this email' });
-        } catch (error) {
-            console.error('Error occurred:', error);
-            res.status(500).json({ error: 'Error during fetching data' });
-        }
-    });
     
     
 app.get('/assessment/questions/:level', async (req, res) => {
