@@ -71,7 +71,7 @@ const Exam = () => {
             const resultData = await response.json();
             setResult(`You answered ${resultData.correct} out of ${questions.length} questions correctly!`);
             if(resultData.correct>=3){
-              navigate("/dashboard", { state: { C_ID, level, courseTitle } });
+              navigate("/dashboard", { state: { C_ID, level, courseTitle ,State: "New"} });
                 console.log("Pass")
             }
             else{
