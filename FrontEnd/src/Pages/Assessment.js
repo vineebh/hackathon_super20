@@ -37,8 +37,8 @@ const Assessment = () => {
   const submitHandler = () => {
     if (selectedOption) {
       const level = selectedOption;
-      if (selectedOption == "Beginner"){
-        navigate("/dashboard" , { state: { C_ID, level, courseTitle }});
+      if (selectedOption === "Beginner"){
+        navigate("/dashboard" , { state: { C_ID, level, courseTitle ,State: "New"}});
       }
       else {
         navigate("/mcq" , { state: { C_ID, level, courseTitle }});

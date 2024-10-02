@@ -13,7 +13,7 @@ const DashBoard = () => {
   const [loading, setLoading] = useState(true); // State for loading
   const userInfo = useSelector((state) => state.auth.userInfo);
   const location = useLocation();
-  const { C_ID, level, courseTitle } = location.state || {};
+  const { C_ID, level, courseTitle, State } = location.state || {};
 
   useEffect(() => {
     const postUserData = async () => {
@@ -45,10 +45,12 @@ const DashBoard = () => {
       }
     };
 
-    //postUserData();
+    if (State === "New"){
+      postUserData();
+    }
     fetchCourses();
 
-  }, [C_ID, courseTitle, level, userInfo]);
+  }, [C_ID, courseTitle, level, userInfo?.userID, State]);
 
   return (
     <main className="bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen py-8">
