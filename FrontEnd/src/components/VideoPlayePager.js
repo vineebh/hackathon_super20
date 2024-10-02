@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import { useLocation } from "react-router-dom";
 import Chatbot from "./Chatbot";
@@ -6,24 +6,9 @@ import Chatbot from "./Chatbot";
 const VideoPlayerPage = () => {
   const location = useLocation();
   const { videoUrl, topic_name } = location.state || {};
-
-  const [query, setQuery] = useState("");
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
 
-  useEffect(() => {
-    const storedQuery = localStorage.getItem("videoQuery");
-    if (storedQuery) {
-      setQuery(storedQuery);
-    }
-  }, []);
 
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const handleSaveQuery = () => {
-    localStorage.setItem("videoQuery", query);
-  };
 
   const toggleChatbot = () => {
     setIsChatbotVisible(!isChatbotVisible);
