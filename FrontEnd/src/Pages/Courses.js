@@ -29,7 +29,6 @@ const Courses = () => {
         const res = await axios.get(
           `http://localhost:1000/checkuser?email=${userInfo.userID}`
         );
-        console.log(res.data)
         // Handle different response statuses
         if (res.status === 200 && res.data.data) {
           // Map the enroll data if the request is successful
@@ -47,6 +46,7 @@ const Courses = () => {
             setError('No courses found for this email.');
           }
         }
+        console.log(res.data)
       } catch (error) {
         // Catch network or server errors (500 responses)
         console.error("Fetch error:", error);
