@@ -103,7 +103,7 @@ app.get('/checkuser', async (req, res) => {
         // Check if email exists in the database
         if (data.length === 0) {
             console.log(`Email not found: ${email}`);
-            return res.status(404).json({ msg: 'Email not found' });
+            return res.status(404).json({ msg: 'Email not found',data: {course_title:'',level:''} });
         }
 
         // Map the courses for the user
@@ -124,7 +124,6 @@ app.get('/checkuser', async (req, res) => {
         res.status(500).json({ error: 'Error during fetching data' });
     }
 });
-
 
 
 app.post('/userdata', async (req, res) => {

@@ -62,7 +62,7 @@ const Courses = () => {
       checkEnroll();
     }
   }, [userInfo?.userID]);
-  
+
   
   if (error) {
     return <div className="text-red-500 text-center">{error}</div>;
