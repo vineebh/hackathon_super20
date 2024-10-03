@@ -9,6 +9,7 @@ const Courses = () => {
   const [error, setError] = useState(null);
   const userInfo = useSelector((state) => state.auth.userInfo);
 
+
   // Fetch enroll data, with userInfo dependency
   useEffect(() => {
     // Fetch course data from backend
@@ -43,20 +44,25 @@ const Courses = () => {
           );
         } else if (res.status === 404) {
           // Handle when no email or courses are found
-          if (res.data.msg === "Email not found") {
-            setError("Email not found. Please check your email and try again.");
-          } else if (res.data.msg === "No courses found for this email") {
-            setError("No courses found for this email.");
+          if (res.data.msg === 'Email not found') {
+            setError('Email not found. Please check your email and try again.');
+          } else if (res.data.msg === 'No courses found for this email') {
+            setError('No courses found for this email.');
           }
         }
+        console.log(res.data)
       } catch (error) {
         // Catch network or server errors (500 responses)
         console.error("Fetch error:", error);
         setError("Failed to fetch enrollment data. Please try again later.");
       }
     };
-    checkEnroll();
-  }, [userInfo.userID]);
+  
+    if (userInfo.userID) {
+      checkEnroll();
+    }
+  }, [userInfo?.userID]);
+    
 
   if (error) {
     return <div className="text-red-500 text-center">{error}</div>;
