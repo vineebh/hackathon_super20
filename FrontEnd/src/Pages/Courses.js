@@ -32,29 +32,30 @@ const Courses = () => {
         const res = await axios.get(
           `http://localhost:1000/checkuser?email=${userInfo.userID}`
         );
-        console.log(res);
-        // Handle different response statuses
+  
+        // Handle 200 OK response and data exists
         if (res.status === 200 && res.data.data) {
-          // Map the enroll data if the request is successful
           setEnroll(
             res.data.data.map((course) => ({
               course_title: course.course_title,
               level: course.level,
             }))
           );
-        } else if (res.status === 404) {
-          // Handle when no email or courses are found
-          if (res.data.msg === 'Email not found') {
+        }
+      } catch (error) {
+        // Handle Axios error for 404
+        if (error.response && error.response.status === 404) {
+          const msg = error.response.data.msg;
+          if (msg === 'Email not found') {
             setError('Email not found. Please check your email and try again.');
-          } else if (res.data.msg === 'No courses found for this email') {
+          } else if (msg === 'No courses found for this email') {
             setError('No courses found for this email.');
           }
+        } else {
+          // Handle other types of errors (500, network issues, etc.)
+          console.error("Fetch error:", error);
+          setError("Failed to fetch enrollment data. Please try again later.");
         }
-        console.log(res.data)
-      } catch (error) {
-        // Catch network or server errors (500 responses)
-        console.error("Fetch error:", error);
-        setError("Failed to fetch enrollment data. Please try again later.");
       }
     };
   
