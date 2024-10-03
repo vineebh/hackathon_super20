@@ -32,10 +32,7 @@ const Courses = () => {
         const res = await axios.get(
           `http://localhost:1000/checkuser?email=${userInfo.userID}`
         );
-<<<<<<< HEAD
-=======
         console.log(res);
->>>>>>> 06bbfe6975dfbf7fa272abb71c6405ed4097fc1f
         // Handle different response statuses
         if (res.status === 200 && res.data.data) {
           // Map the enroll data if the request is successful
