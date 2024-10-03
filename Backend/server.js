@@ -127,7 +127,6 @@ app.get('/checkuser', async (req, res) => {
 
 
 
-
 app.post('/userdata', async (req, res) => {
     
     // Destructure request body
