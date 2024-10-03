@@ -9,7 +9,7 @@ const Courses = () => {
   const [error, setError] = useState(null);
   const userInfo = useSelector((state) => state.auth.userInfo);
 
-  
+
   // Fetch enroll data, with userInfo dependency
   useEffect(() => {
     // Fetch course data from backend
@@ -24,18 +24,22 @@ const Courses = () => {
     };
     fetchCourses();
 
+  }, []);
+
+  useEffect(() => {
     const checkEnroll = async () => {
       try {
         const res = await axios.get(
           `http://localhost:1000/checkuser?email=${userInfo.userID}`
         );
+        console.log(res);
         // Handle different response statuses
         if (res.status === 200 && res.data.data) {
           // Map the enroll data if the request is successful
           setEnroll(
             res.data.data.map((course) => ({
               course_title: course.course_title,
-              level: course.level
+              level: course.level,
             }))
           );
         } else if (res.status === 404) {

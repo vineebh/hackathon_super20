@@ -91,16 +91,22 @@ app.get('/checkuser', async (req, res) => {
             return res.status(400).json({ msg: 'Email is required' });
         }
 
+        // Log the email being searched
+        console.log(`Checking courses for email: ${email}`);
+
         // Query to fetch the course_title and level for the entered email
         const [data] = await db.query('SELECT course_title, level FROM users WHERE email_id = ?', [email]);
+
+        // Log the result from the database query
+        console.log("Query Result:", data);
 
         // Check if email exists in the database
         if (data.length === 0) {
             console.log(`Email not found: ${email}`);
-            return res.status(404).json({ msg: 'Email not found',data: {course_title:'',level:''} });
+            return res.status(404).json({ msg: 'Email not found' });
         }
 
-        // Check if email exists but no associated course titles
+        // Map the courses for the user
         const userCourses = data.map(course => ({
             course_title: course.course_title,
             level: course.level
