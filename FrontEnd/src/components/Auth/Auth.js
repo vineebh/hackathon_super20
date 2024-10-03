@@ -68,6 +68,7 @@ const Auth = () => {
         const response = await signInUserEmailAndPass(email, password);
         const token = response.user.accessToken;
         localStorage.setItem("idToken", token);
+        localStorage.setItem("userID",response.user.email)  //store email id in local storage
         dispatch(setIdToken(token));
         dispatch(setLoginStatus(true));
         navigate('/courses');
@@ -75,6 +76,7 @@ const Auth = () => {
         const response = await createUserEmailAndPass(email, password);
         const token = response.user.accessToken;
         localStorage.setItem("idToken", token);
+        localStorage.setItem("userID",response.user.email)  //store email id in local storage
         dispatch(setIdToken(token));
         dispatch(setIsLogin(true));
         navigate('/courses');
