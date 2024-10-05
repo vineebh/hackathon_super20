@@ -46,21 +46,25 @@ const Exam = () => {
     };
 
     const handleNext = () => {
+        // Get the current question's ID
         const currentQuestionId = questions[currentQuestionIndex].id;
     
+        // Check if an answer has been selected for the current question
         if (!answers[currentQuestionId]) {
             alert("Please select an answer before proceeding to the next question.");
-            return;
+            return; // Prevent moving to the next question if no option is selected
         }
     
+        // Move to the next question
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
     };
+    
 
     const handleSubmit = async () => {
         const answerArray = Object.entries(answers).map(([questionId, selectedOption]) => ({
-            questionId: parseInt(questionId, 10),
+            questionId: parseInt(questionId, 10), // Ensure the ID is a number
             selectedOption,
         }));
 
@@ -98,8 +102,8 @@ const Exam = () => {
     const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
     return (
-        <div className='bg-gray-900 min-h-screen py-12 sm:py-16 flex items-center justify-center'>
-            <div className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-4xl w-full">
+        <div className='bg-gray-900 min-h-screen py-12 sm:py-16 mt-10 pt-16 px-4 sm:px-10'>
+            <div className="bg-gray-800 p-10 rounded-lg shadow-2xl max-w-4xl mx-auto">
                 <h1 className="text-4xl text-white font-extrabold text-center mb-8">Assessment</h1>
 
                 {questions.length > 0 && (
