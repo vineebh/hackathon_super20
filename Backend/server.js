@@ -92,7 +92,7 @@ app.get('/skills/:C_ID', async (req, res) => {
 //MCQ,chapterQ,everyDayQ
 app.post('/assessment/questions', async (req, res) => {
     const { level, c_id, limit } = req.body; // Extract from req.body since it's a POST request
-  
+
     const courses = {
         101: 'python_qna',
         102: 'excel_qna',
