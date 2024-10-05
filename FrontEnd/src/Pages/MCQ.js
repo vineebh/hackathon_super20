@@ -35,8 +35,6 @@ const Exam = () => {
     }, [C_ID, Level]);
 
     const handleChange = (questionId, selectedOption) => {
-
-        
         setAnswers({ ...answers, [questionId]: selectedOption });
         console.log('Current answers:', { ...answers, [questionId]: selectedOption });
     };
