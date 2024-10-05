@@ -63,6 +63,8 @@ const Courses = () => {
       checkEnroll();
     }
   }, [userInfo?.userID]);
+  
+  
 
   
   if (error) {
