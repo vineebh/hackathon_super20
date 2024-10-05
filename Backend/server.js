@@ -61,6 +61,7 @@ app.get('/checkuser', async (req, res) => {
     }
 });
 
+
 //Assessment
 app.get('/skills/:C_ID', async (req, res) => {
     const C_ID = req.params.C_ID;
@@ -162,6 +163,7 @@ app.post('/assessment/submit', async (req, res) => {
         res.status(500).json({ error: 'Server Error' });
     }
 });
+
 
 //Dashboard
 app.post('/userdata', async (req, res) => {
