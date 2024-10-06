@@ -7,6 +7,8 @@ import {
   signInWithGoogle,
 } from "../../firebase/auth";
 import { setIdToken, setIsLogin, setLoginStatus } from "../../store/authSlice";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 

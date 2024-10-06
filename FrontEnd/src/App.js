@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Auth from "./components/Auth/Auth";
 import Header from "./components/Header";
 import Home from "./Pages/Home";
@@ -11,7 +12,7 @@ import DashBoard from "./Pages/DashBoard";
 import Assessment from "./Pages/Assessment";
 import Exam from "./Pages/MCQ";
 import ArticleView from "./components/ArticleView";
-import { useSelector } from "react-redux";
+
 
 function App() {
   const loginStatus = useSelector((state) => state.auth.loginStatus);
@@ -26,18 +27,14 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/courses" element={<Courses />} />
+
           <Route path="/*" element={<Home/>}/>
-
           {!loginStatus && <Route path="/auth" element={<Auth />} />}
-
           {loginStatus && <Route path="/mcq" element={<Exam />} />}
           {loginStatus && <Route path="/dashboard" element={<DashBoard />} />}
-
           {loginStatus && <Route path="/Assessment" element={<Assessment />} />}
           {loginStatus && <Route path="/video" element={<VideoPlayerPage />} />}
-          {loginStatus && (
-            <Route path="/articleView" element={<ArticleView />} />
-          )}
+          {loginStatus && <Route path="/articleView" element={<ArticleView />} />}
 
 
         </Routes>
