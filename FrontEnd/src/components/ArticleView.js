@@ -62,6 +62,13 @@ const ArticleView = () => {
               No conclusion available.
             </div>
           )}
+          {/* Back Button */}
+        <button
+          onClick={() => window.history.back()}
+          className="mt-4 px-6 py-2 bg-yellow-400 text-black rounded-lg shadow-md hover:bg-gray-700 hover:text-white transition duration-200"
+        >
+          Back to Videos
+        </button>
         </section>
       </article>
     </div>
