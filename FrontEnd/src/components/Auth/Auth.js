@@ -82,7 +82,7 @@ const Auth = () => {
         dispatch(setIdToken(token));
         dispatch(setLoginStatus(true));
 
-        navigate("/courses");
+        navigate(window.history.back());
         toast.success("Login Successfully"); // Toast notification for successful login
 
 
@@ -94,7 +94,7 @@ const Auth = () => {
         dispatch(setIdToken(token));
         dispatch(setIsLogin(true));
 
-        navigate("/courses");
+        navigate(window.history.back());
         toast.success("Signup Successfully"); // Toast notification for successful signup
 
       }
@@ -129,7 +129,7 @@ const Auth = () => {
       dispatch(setLoginStatus(true));
       dispatch(setIsLogin(true))
       toast.success("Login Successfully"); // Toast notification for successful Google login
-      navigate("/courses");
+      navigate(window.history.back());
 
     } catch (error) {
       console.error("Google Sign-In Error:", error.message);
