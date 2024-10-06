@@ -74,7 +74,9 @@ const DashBoard = () => {
     } else if (level === "Advanced") {
       setLevel(3);
     }
-  }, []);
+  }, [level]);
+
+  console.error(error);
 
   const filteredData = courses.filter((data) => data.level === Level);
 
