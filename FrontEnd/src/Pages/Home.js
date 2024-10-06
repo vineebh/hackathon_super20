@@ -88,6 +88,7 @@ const Home = () => {
 
 
       </div>
+      <Chatbot/>
     </div>
   );
 };
