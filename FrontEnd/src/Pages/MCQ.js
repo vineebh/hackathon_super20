@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Exam = () => {
     const [questions, setQuestions] = useState([]);
@@ -26,7 +28,7 @@ const Exam = () => {
                 setQuestions(response.data);
                 console.log('Fetched questions:', response.data);
             } catch (error) {
-                console.error('Failed to fetch questions:', error);
+                toast.error('Failed to fetch questions:', error)
             } finally {
                 setLoading(false);
             }
@@ -36,7 +38,7 @@ const Exam = () => {
 
     const handleChange = (questionId, selectedOption) => {
         setAnswers({ ...answers, [questionId]: selectedOption });
-        console.log('Current answers:', { ...answers, [questionId]: selectedOption });
+        
     };
 
     const handlePrev = () => {
@@ -46,25 +48,23 @@ const Exam = () => {
     };
 
     const handleNext = () => {
-        // Get the current question's ID
         const currentQuestionId = questions[currentQuestionIndex].id;
     
-        // Check if an answer has been selected for the current question
         if (!answers[currentQuestionId]) {
-            alert("Please select an answer before proceeding to the next question.");
-            return; // Prevent moving to the next question if no option is selected
+
+            toast.error("Please select an answer before proceeding to the next question.")
+
+            return;
         }
     
-        // Move to the next question
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
     };
-    
 
     const handleSubmit = async () => {
         const answerArray = Object.entries(answers).map(([questionId, selectedOption]) => ({
-            questionId: parseInt(questionId, 10), // Ensure the ID is a number
+            questionId: parseInt(questionId, 10),
             selectedOption,
         }));
 
@@ -80,17 +80,21 @@ const Exam = () => {
 
             if (response.data.correct >= 3) {
                 navigate("/dashboard", { state: { C_ID, level, courseTitle, State: "New" } });
-                console.log("Pass");
+                // toast.success('You are Enrolled in', courseTitle)
+                
             } else {
                 if (level === "Advanced") {
                     navigate("/dashboard", { state: { C_ID, level: "Intermediate", courseTitle, State: "New" } });
+                    // toast.success('You are Enrolled in', courseTitle)
                 } else {
                     navigate("/dashboard", { state: { C_ID, level: "Beginner", courseTitle, State: "New" } });
+                    // toast.success('You are Enrolled in', courseTitle)
                 }
                 console.log("Fail");
             }
         } catch (error) {
             console.error('Error during submission:', error);
+            toast.error('Error during submission:', error)
             setResult('An error occurred while submitting your answers. Please try again.');
         }
     };
@@ -102,8 +106,8 @@ const Exam = () => {
     const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
     return (
-        <div className='bg-gray-900 min-h-screen py-12 sm:py-16 mt-10 pt-16 px-4 sm:px-10'>
-            <div className="bg-gray-800 p-10 rounded-lg shadow-2xl max-w-4xl mx-auto">
+        <div className='bg-gray-900 min-h-screen py-12 sm:py-16 flex items-center justify-center'>
+            <div className="bg-gray-800 p-10 rounded-lg shadow-lg max-w-4xl w-full">
                 <h1 className="text-4xl text-white font-extrabold text-center mb-8">Assessment</h1>
 
                 {questions.length > 0 && (
