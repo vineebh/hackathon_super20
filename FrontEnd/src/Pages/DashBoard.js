@@ -18,23 +18,6 @@ const DashBoard = () => {
   const navigate = useNavigate(); // useNavigate hook to programmatically navigate
   const { C_ID, level, courseTitle, State } = location.state || {};
   const [Level, setLevel] = useState(0);
-  const navigate = useNavigate();  // Use navigate for programmatic navigation
-
-  // Adjust browser history to prevent going back
-  useEffect(() => {
-    // Prevent back navigation
-    const handlePopState = (event) => {
-      event.preventDefault();
-      navigate("/courses");  // Redirect user to courses page when back button is pressed
-    };
-
-    window.history.pushState(null, null);  // Prevent user from going back
-    window.addEventListener("popstate", handlePopState);  // Listen to back navigation
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);  // Cleanup event listener
-    };
-  }, [navigate]); 
 
   useEffect(() => {
     const postUserData = async () => {
@@ -44,17 +27,15 @@ const DashBoard = () => {
           course_title: courseTitle,
           Level: level,
         });
-        if (response.success) {
-          toast.success("enrolled");
-        }
-
         console.log("Response:", response.data);
+        return true;
       } catch (error) {
         console.error(
           "Post error:",
           error.response ? error.response.data : error.message
         );
         setError("Failed to enroll course. Please try again later.");
+        return false;
       }
     };
 
@@ -78,7 +59,9 @@ const DashBoard = () => {
     };
 
     if (State === "New") {
-      postUserData();
+      if (postUserData()) {
+        toast.success('You are Enrolled in '+courseTitle+' at level '+level)
+      }
     }
     fetchCourses();
   }, [C_ID, courseTitle, level, userInfo?.userID, State]);
