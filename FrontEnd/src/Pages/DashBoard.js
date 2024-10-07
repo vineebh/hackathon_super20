@@ -18,7 +18,6 @@ const DashBoard = () => {
   const navigate = useNavigate(); // useNavigate hook to programmatically navigate
   const { C_ID, level, courseTitle, State } = location.state || {};
   const [Level, setLevel] = useState(0);
-  const navigate = useNavigate();  // Use navigate for programmatic navigation
 
   useEffect(() => {
     const postUserData = async () => {
@@ -28,17 +27,15 @@ const DashBoard = () => {
           course_title: courseTitle,
           Level: level,
         });
-        if (response.success) {
-          toast.success("enrolled");
-        }
-
         console.log("Response:", response.data);
+        return true;
       } catch (error) {
         console.error(
           "Post error:",
           error.response ? error.response.data : error.message
         );
         setError("Failed to enroll course. Please try again later.");
+        return false;
       }
     };
 
@@ -62,7 +59,9 @@ const DashBoard = () => {
     };
 
     if (State === "New") {
-      postUserData();
+      if (postUserData()) {
+        toast.success('You are Enrolled in '+courseTitle+' at level '+level)
+      }
     }
     fetchCourses();
   }, [C_ID, courseTitle, level, userInfo?.userID, State]);
