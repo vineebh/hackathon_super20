@@ -79,7 +79,7 @@ const Exam = () => {
             setResult(`You answered ${response.data.correct} out of ${questions.length} questions correctly!`);
 
             if (response.data.correct >= 3) {
-                navigate("/dashboard", { state: { C_ID, level, courseTitle, State: "New" } });
+                navigate("/dashboard", { state: { C_ID, level, courseTitle, State: "New",form: '/mcq' } });
                 // toast.success('You are Enrolled in', courseTitle)
                 
             } else {
