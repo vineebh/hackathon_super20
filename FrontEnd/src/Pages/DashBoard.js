@@ -15,6 +15,7 @@ const DashBoard = () => {
   const [loading, setLoading] = useState(true);
   const userInfo = useSelector((state) => state.auth.userInfo);
   const location = useLocation();
+  const navigate = useNavigate(); // useNavigate hook to programmatically navigate
   const { C_ID, level, courseTitle, State } = location.state || {};
   const [Level, setLevel] = useState(0);
   const navigate = useNavigate();  // Use navigate for programmatic navigation
