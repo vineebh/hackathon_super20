@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
-const Videos = ({ courses }) => {
+const Videos = ({ courses ,C_ID}) => {
   const navigate = useNavigate(); // Use useNavigate for navigation
 
   // Navigate to the VideoPlayerPage with the video URL in the state
   const handleWatchClick = (videoUrl, topic_name) => {
-    navigate("/video", { state: { videoUrl, topic_name } });
+    navigate("/video", { state: { videoUrl, topic_name, C_ID } });
   };
 
   return (

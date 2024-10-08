@@ -1,15 +1,20 @@
 import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
-import { useLocation } from "react-router-dom";
-import Chatbot from "./Chatbot";
+import { useLocation, useNavigate } from "react-router-dom";
+import Chatbot from "../components/Chatbot";
 
 const VideoPlayerPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
-  const { videoUrl, topic_name } = location.state || {};
+  const { videoUrl, topic_name, C_ID } = location.state || {};
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [volume, setVolume] = useState(1);
   const playerRef = useRef(null);
+
+  const testHandler = () => {
+    navigate("/test", { state: { C_ID: C_ID, topic: topic_name } });
+  };
 
   const toggleChatbot = () => {
     setIsChatbotVisible(!isChatbotVisible);
@@ -101,6 +106,14 @@ const VideoPlayerPage = () => {
           Back
         </button>
       </div>
+
+          {/* Test Button */}
+          <button
+            onClick={() => testHandler()}
+            className="mt-4 px-6 py-2 bg-yellow-400 text-black rounded-lg shadow-md hover:bg-gray-700 hover:text-white transition duration-200"
+          >
+            Test
+          </button>
 
       {/* Chatbot Modal */}
       {isChatbotVisible && (

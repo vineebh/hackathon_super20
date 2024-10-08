@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Exam = () => {
+const MCQ = () => {
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState({});
     const [result, setResult] = useState(null);
@@ -171,4 +171,4 @@ const Exam = () => {
     );
 };
 
-export default Exam;
+export default MCQ;

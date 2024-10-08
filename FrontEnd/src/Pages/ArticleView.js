@@ -1,16 +1,19 @@
 import React from 'react';
 import Markdown from 'react-markdown';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 const ArticleView = () => {
   const location = useLocation();
-  const { articleData } = location.state;
+  const navigate = useNavigate();
+  const { articleData, topic_name, C_ID } = location.state;
+
+  const testHandler = () => {
+    navigate("/test", { state: { C_ID: C_ID, topic: topic_name } });
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 py-10 px-6">
-
-      <article className=" max-w-5xl m-auto bg-gray-800 text-white rounded-lg shadow-2xl overflow-hidden">
-
+      <article className="max-w-5xl m-auto bg-gray-800 text-white rounded-lg shadow-2xl overflow-hidden">
         {/* Header Section */}
         <header className="p-8 bg-gray-700 border-b border-gray-600 shadow-md hover:shadow-lg transition-shadow duration-300">
           <h1 className="text-5xl font-bold text-yellow-400 mb-2 mt-3">
@@ -29,9 +32,7 @@ const ArticleView = () => {
               <p>{articleData.content.introduction}</p>
             </div>
           ) : (
-            <div className="text-gray-400 italic">
-              No introduction available.
-            </div>
+            <div className="text-gray-400 italic">No introduction available.</div>
           )}
 
           {/* Main Content rendered with Markdown */}
@@ -40,9 +41,7 @@ const ArticleView = () => {
               <Markdown>{articleData.content.main_content}</Markdown>
             </div>
           ) : (
-            <div className="text-gray-400 italic">
-              No main content available.
-            </div>
+            <div className="text-gray-400 italic">No main content available.</div>
           )}
         </section>
 
@@ -58,17 +57,24 @@ const ArticleView = () => {
               </p>
             </>
           ) : (
-            <div className="text-gray-400 italic">
-              No conclusion available.
-            </div>
+            <div className="text-gray-400 italic">No conclusion available.</div>
           )}
+
           {/* Back Button */}
-        <button
-          onClick={() => window.history.back()}
-          className="mt-4 px-6 py-2 bg-yellow-400 text-black rounded-lg shadow-md hover:bg-gray-700 hover:text-white transition duration-200"
-        >
-          Back
-        </button>
+          <button
+            onClick={() => window.history.back()}
+            className="mt-4 px-6 py-2 bg-yellow-400 text-black rounded-lg shadow-md hover:bg-gray-700 hover:text-white transition duration-200"
+          >
+            Back
+          </button>
+
+          {/* Test Button */}
+          <button
+            onClick={() => testHandler()}
+            className="mt-4 px-6 py-2 bg-yellow-400 text-black rounded-lg shadow-md hover:bg-gray-700 hover:text-white transition duration-200"
+          >
+            Test
+          </button>
         </section>
       </article>
     </div>
