@@ -110,7 +110,7 @@ const DashBoard = () => {
 
           <div className="h-1 w-3/4 mx-auto bg-gradient-to-r from-gray-800 via-yellow-500 to-gray-800 my-4 rounded-full"></div>
           <aside className="lg:hidden w-full  flex justify-center lg:w-1/4 p-4 rounded-lg shadow-xl transition-all duration-300 ease-in-out hover:shadow-2xl">
-            <ProgressBar Level={level} />
+            <ProgressBar Level={level} pp="50" points="250" />
           </aside>
           {/* Toggle Switch */}
           <label className="flex items-center justify-center mt-8 mb-6 cursor-pointer relative">
@@ -145,16 +145,16 @@ const DashBoard = () => {
           {/* Conditional Rendering based on the selected view */}
           <div className="mt-8">
             {view === "video" ? (
-              <Videos courses={filteredData} />
+              <Videos courses={filteredData} C_ID={C_ID}/>
             ) : (
-              <Article courses={filteredData} />
+              <Article courses={filteredData} C_ID={C_ID}/>
             )}
           </div>
         </article>
 
         {/* Right section - Progress Bar */}
         <aside className="hidden lg:block lg:w-1/4 p-2 rounded-lg shadow-xl transition-all duration-300 ease-in-out hover:shadow-2xl">
-          <ProgressBar Level={level} />
+          <ProgressBar Level={level} pp="50" points="25" />
         </aside>
       </section>
     </main>

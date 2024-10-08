@@ -89,7 +89,7 @@ app.get('/skills/:C_ID', async (req, res) => {
     }
 });
 
-//MCQ,chapterQ,everyDayQ
+//MCQ,everyDayQ
 app.post('/assessment/questions', async (req, res) => {
     const { level, c_id, limit } = req.body; // Extract from req.body since it's a POST request
   
@@ -107,7 +107,7 @@ app.post('/assessment/questions', async (req, res) => {
 
     try {
         const [rows] = await db.query(
-            `SELECT id, questions, option_1, option_2, option_3, option_4, correct_option 
+            `SELECT id, questions, option_1, option_2, option_3, option_4
              FROM ${course_title} 
              WHERE level = ? 
              ORDER BY RAND() 
@@ -119,8 +119,46 @@ app.post('/assessment/questions', async (req, res) => {
             return res.status(404).json({ error: 'No questions available for this level' });
         }
 
-        const questionsWithoutAnswers = rows.map(({ correct_option, ...rest }) => rest);
+        const questionsWithoutAnswers = rows    //.map(({ correct_option, ...rest }) => rest);
         res.status(200).json(questionsWithoutAnswers);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server Error' });
+    }
+});
+
+//chapterQ
+app.post('/assessment/chapterQ', async (req, res) => {
+    const { topic, c_id, limit } = req.body; // Extract from req.body since it's a POST request
+  
+    const courses = {
+        101: 'python_qna',
+        102: 'excel_qna',
+        103: 'data_analytics_qna',
+    };
+
+    const course_title = courses[c_id];
+
+    if (!course_title) {
+        return res.status(400).json({ error: 'Invalid course ID' });
+    }
+
+    try {
+        const [rows] = await db.query(
+            `SELECT id, questions, option_1, option_2, option_3, option_4 
+             FROM ${course_title} 
+             WHERE title = ? 
+             ORDER BY RAND() 
+             LIMIT ?`,
+            [topic, limit]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'No questions available for this topic' });
+        }
+
+        const questions = rows
+        res.status(200).json(questions);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Server Error' });

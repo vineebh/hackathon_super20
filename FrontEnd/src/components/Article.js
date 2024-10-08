@@ -2,12 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router";
 
 
-const Article = ({ courses }) => {
+const Article = ({ courses ,C_ID}) => {
   const navigate = useNavigate();
 
-  const readMoreHandler =(articleData)=>{
-    navigate('/articleView' ,{state: {articleData:articleData}})
-
+  const readMoreHandler =(articleData, topic_name)=>{
+    console.log(topic_name)
+    navigate('/article' ,{state: {articleData:articleData, topic_name, C_ID}})
   }
 
 
@@ -30,7 +30,7 @@ const Article = ({ courses }) => {
               <h2 className="text-2xl font-semibold text-yellow-300">{articleData.title}</h2>
               <p className="text-gray-400 mt-2">{articleData.content.introduction}</p>
               <div className="mt-4 text-yellow-300">
-              <button onClick={()=> {readMoreHandler(articleData)}}>Read more</button>
+              <button onClick={()=> {readMoreHandler(articleData, course.topic_name)}}>Read more</button>
               </div>
             </div>
           );
