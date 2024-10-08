@@ -19,21 +19,26 @@ const DashBoard = () => {
   const { C_ID, level, courseTitle, State } = location.state || {};
   const [Level, setLevel] = useState(0);
 
-  // Adjust browser history to prevent going back
   useEffect(() => {
-    // Prevent back navigation
-    const handlePopState = (event) => {
-      event.preventDefault();
-      navigate("/courses");  // Redirect user to courses page when back button is pressed
-    };
+    // Check if the user is coming from "/assessment" or "/mcq"
+    const previousPage = location.state?.from;
+    const isComingFromAssessmentOrMCQ = previousPage === "/assessment" || previousPage === "/mcq";
 
-    window.history.pushState(null, null);  // Prevent user from going back
-    window.addEventListener("popstate", handlePopState);  // Listen to back navigation
+    if (isComingFromAssessmentOrMCQ) {
+      // Prevent back navigation
+      const handlePopState = (event) => {
+        event.preventDefault();
+        navigate("/courses");  // Redirect user to courses page when back button is pressed
+      };
 
-    return () => {
-      window.removeEventListener("popstate", handlePopState);  // Cleanup event listener
-    };
-  }, [navigate]); 
+      window.history.pushState(null, null);  // Prevent user from going back
+      window.addEventListener("popstate", handlePopState);  // Listen to back navigation
+
+      return () => {
+        window.removeEventListener("popstate", handlePopState);  // Cleanup event listener
+      };
+    }
+  }, [navigate, location.state?.from]);
 
   useEffect(() => {
     const postUserData = async () => {
@@ -92,26 +97,6 @@ const DashBoard = () => {
     }
   }, [level]);
 
-  useEffect(() => {
-    // Check if the user is coming from "/assessment" or "/mcq"
-    const previousPage = location.state?.from;
-    const isComingFromAssessmentOrMCQ = previousPage === "/assessment" || previousPage === "/mcq";
-
-    if (isComingFromAssessmentOrMCQ) {
-      // Prevent back navigation
-      const handlePopState = (event) => {
-        event.preventDefault();
-        navigate("/courses");  // Redirect user to courses page when back button is pressed
-      };
-
-      window.history.pushState(null, null);  // Prevent user from going back
-      window.addEventListener("popstate", handlePopState);  // Listen to back navigation
-
-      return () => {
-        window.removeEventListener("popstate", handlePopState);  // Cleanup event listener
-      };
-    }
-  }, [navigate, location.state?.from]);
 
   const filteredData = courses.filter((data) => data.level === Level);
 
