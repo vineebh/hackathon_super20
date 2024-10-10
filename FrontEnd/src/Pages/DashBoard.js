@@ -16,7 +16,7 @@ const DashBoard = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const location = useLocation();
   const navigate = useNavigate();
-  const { C_ID, level, courseTitle, State ,courseData} = location.state || {};
+  const { C_ID, level, courseTitle, State ,from} = location.state || {};
   const [Level, setLevel] = useState(0);
 
   useEffect(() => {
@@ -69,6 +69,7 @@ const DashBoard = () => {
 
         if(response.success){
           setCourses(response.data);
+          console.log(response.data)
         }
 
       } catch (error) {

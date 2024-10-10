@@ -97,7 +97,7 @@ const VideoPlayerPage = () => {
             topic_name: nextVideo.topic_name,
             videos,
             currentIndex: currentIndex + 1,
-            userEmail, // Pass userEmail to the next video
+            email_id, // Pass userEmail to the next video
           },
         });
       } else {
